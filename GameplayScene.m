@@ -42,7 +42,6 @@
 -(void) update:(ccTime) dt
 {
     //do game loop stuff
-    NSLog(@"looping");
 }
 
 -(void) dealloc

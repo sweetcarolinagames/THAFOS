@@ -51,20 +51,16 @@ static Player *singletonPlayer;
         self.runAction  = [[PlayerRunAction action] retain];
         self.fallAction = [[PlayerFallAction action] retain];
         self.fallTermAction  = [[PlayerFallTerminalAction actionWithDuration:0] retain];
-        self.maxFallHeight   = 200;
         self.maxDashDistance = 100;
         self.maxStamina      = 100;
         self.stamina         = self.maxStamina;
         self.velocity = ccp(0.0, 0.0);
-        self.position = ccp(winSize.width/4,100);
+        self.position = ccp(winSize.width/4, 100);
         _hits  = 0;
         _alive = YES;
         _collisionPaddingX = 0;
         _collisionPaddingY = 0;
 
-                
-        jumpStaminaValue     = self.maxStamina * 0.05f;
-        wallJumpStaminaValue = self.maxStamina * 0.1f;
         dashStaminaValue     = self.maxStamina * 0.15f;
         moveState = FALL;
         
@@ -133,7 +129,7 @@ static Player *singletonPlayer;
 }
 
 
-/*
+/**
  * Makes player run to right at self's velocity
  */
 -(void)run
@@ -158,7 +154,6 @@ static Player *singletonPlayer;
     // gradually restore player stamina
     self.stamina += 0.25;
     [self normalizeStamina];
-//    NSLog(@"RunAction retain count %d", [self.runAction retainCount]);
 }
 
 /**
@@ -235,39 +230,6 @@ static Player *singletonPlayer;
 }
 
 -(CCAction *)wallJump:(CollisionLocation)collLoc
-{
-    PlayerJumpAction *myJumpAction = nil;
-    CCCallFunc *endJumpAction = nil;
-    CCSequence *jumpActionSequence = nil;
-    
-    if(self.stamina >= wallJumpStaminaValue)
-    {
-        [self clearMoveState];
-        [self addMoveState:JUMP];
-        [self resetRunAction];
-    //    [self resetFallAction];
-        
-        if(collLoc == LEFT)
-            myJumpAction = [[PlayerJumpAction actionWithDuration:0.5 position:ccp(-100, 0) height:100 jumps:1] retain];
-        else
-            myJumpAction = [[PlayerJumpAction actionWithDuration:0.5 position:ccp(100, 0) height:100 jumps:1] retain];
-        // stop jumps until previous jump is finished
-        endJumpAction = [[CCCallFunc actionWithTarget:self selector:@selector(endJump)] retain];
-        jumpActionSequence = [[CCSequence actions:myJumpAction, endJumpAction, nil] retain];
-        [self setJumpAction:jumpActionSequence];
-        [self runAction:jumpActionSequence];
-        [self setVelocity:ccp(0,0)];
-        
-        self.stamina -= wallJumpStaminaValue;
-        [self normalizeStamina];
-    }
-    else 
-    {
-        [self flash:ccc3(255, 255, 0) :0.25];
-    }
-    
-    return jumpActionSequence;
-}
 
 /*
  * Ends jumping state & clears flag that allows player to begin falling
@@ -355,28 +317,6 @@ static Player *singletonPlayer;
 
 
 //        }
-//    }
-}
-
--(void)fallForever
-{
-    if(self.fallAction != nil)
-    {
-        if(!self.fallAction.started)
-        {
-            self.fallAction = [PlayerFallAction actionWithDurationAndVelocity:1 :ccp([self velocity].x, -GRAV)];
-            [self runAction:self.fallAction];        
-        }
-    }
-
-}
-
--(void)reachTerminalVelocity
-{
-//    if(![self isInMoveState:RUN,NONE])
-//    {
-//        self.fallAction = [PlayerFallAction actionWithDurationAndVelocity:0.25 :ccp([self velocity].x, -GRAV)];
-//        [self runAction:self.fallAction];
 //    }
 }
 

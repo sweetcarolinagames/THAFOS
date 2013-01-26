@@ -9,16 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "RunAction.h"
-#import "FallAction.h"
 #import "HitAction.h"
-#import "ThrowAction.h"
-#import "TurretIdleAction.h"
-#import "EnemyIdleAction.h"
 
 #define ENEMY_TAG 1
-#define BOOK_TAG 2
-#define TURRET_TAG 3
-#define WALL_TAG 4
 
 typedef enum
 {

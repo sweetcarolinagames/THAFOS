@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameplayBackgroundLayer.h"
+#import "GameplaySpriteLayer.h"
 
 #import "cocos2d.h"
 
@@ -18,11 +19,13 @@
     
     @private
     GameplayBackgroundLayer* _bgLayer;
+    GameplaySpriteLayer *_spriteLayer;
     
 }
 
 +(GameplayScene*) scene;
 
 @property (nonatomic, readonly) GameplayBackgroundLayer *bgLayer;
+@property (nonatomic, readonly) GameplaySpriteLayer *spriteLayer;
 
 @end

@@ -13,6 +13,7 @@
 
 @implementation GameplayScene
 @synthesize bgLayer = _bgLayer;
+@synthesize spriteLayer = _spriteLayer;
 
 +(GameplayScene*) scene
 {
@@ -27,6 +28,10 @@
         _bgLayer   = [GameplayBackgroundLayer node]; //auto-release object
         [self addChild:_bgLayer z:BACKGROUND_LAYER_LEVEL];        
         
+        // Sprite Layer
+        _spriteLayer = [GameplaySpriteLayer node]; //auto-release object
+        [self addChild:_spriteLayer z:SPRITE_LAYER_LEVEL];
+        
         //Schedule the game loop
         [self scheduleUpdate];
     }
@@ -37,6 +42,7 @@
 -(void) update:(ccTime) dt
 {
     //do game loop stuff
+    NSLog(@"looping");
 }
 
 -(void) dealloc

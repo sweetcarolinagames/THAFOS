@@ -8,7 +8,6 @@
 
 #import "Player.h"
 #import "SimpleAudioEngine.h"
-#define MAX_HITS 3
 
 @implementation Player
 
@@ -37,7 +36,7 @@ static Player *singletonPlayer;
     {
         initialized = YES;
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"playerAnim.plist"];    
-        singletonPlayer = [[Player alloc] initWithSpriteFrameName:@"ninja_run1.png"];
+        singletonPlayer = [[Player alloc] initWithSpriteFrameName:@"ufo.jpg"];
     }
 }
 
@@ -137,7 +136,7 @@ static Player *singletonPlayer;
     {
         [self clearMoveState];
         [self addMoveState:RUN];
-        [self resetFallAction];
+//        [self resetFallAction];
         
         if(self.runAction != nil)
         {
@@ -261,15 +260,15 @@ static Player *singletonPlayer;
     
         [self clearMoveState];
         [self addMoveState:DASH];
-        [self resetFallAction];
+//        [self resetFallAction];
         
         [[SimpleAudioEngine sharedEngine]playEffect:@"dash.mp3"];
         CGFloat dashX = 0; // 0 since we don't want to move horizontally
         CGFloat dashY = end.y - start.y;
         const CGPoint dashDelta = ccp(dashX, dashY);
         const ccTime dashTime = 0.25f;
-        const CGFloat normVelFactor = 1.0f/dashTime;
-        const CGPoint newVel = ccpMult(dashDelta, normVelFactor);
+//        const CGFloat normVelFactor = 1.0f/dashTime;
+//        const CGPoint newVel = ccpMult(dashDelta, normVelFactor);
         
         dashAction = [[PlayerDashAction action:dashTime position:dashDelta distance:self.maxDashDistance] retain];
         endDashAction = [[CCCallFunc actionWithTarget:self selector:@selector(endDash)] retain];
@@ -296,28 +295,28 @@ static Player *singletonPlayer;
 }
 
 
--(void)fall
-{
-    [self clearMoveState];
-    [self addMoveState:FALL];
-    [self resetRunAction];
-    
-//    if(self.fallTermAction != nil)
-//    {
-//        if(!self.fallTermAction.started)
-//        {
-            [self fallForever];
-//            const float force = 50;
-//            PlayerFallStepAction *fallStepAction = [PlayerFallStepAction actionWithDuration:0.5 position:ccp(0, -force)];
-//            self.fallTermAction = [PlayerFallTerminalAction actionWithAction:fallStepAction rate:1];
-//            CCCallFunc *reachTermVelAction = [CCCallFunc actionWithTarget:self selector:@selector(reachTerminalVelocity)];
-//            CCSequence *fallActionSequence = [CCSequence actions:self.fallTermAction, reachTermVelAction, nil];
-//            [self runAction:fallActionSequence];
-
-
-//        }
-//    }
-}
+//-(void)fall
+//{
+//    [self clearMoveState];
+//    [self addMoveState:FALL];
+//    [self resetRunAction];
+//    
+////    if(self.fallTermAction != nil)
+////    {
+////        if(!self.fallTermAction.started)
+////        {
+//            [self fallForever];
+////            const float force = 50;
+////            PlayerFallStepAction *fallStepAction = [PlayerFallStepAction actionWithDuration:0.5 position:ccp(0, -force)];
+////            self.fallTermAction = [PlayerFallTerminalAction actionWithAction:fallStepAction rate:1];
+////            CCCallFunc *reachTermVelAction = [CCCallFunc actionWithTarget:self selector:@selector(reachTerminalVelocity)];
+////            CCSequence *fallActionSequence = [CCSequence actions:self.fallTermAction, reachTermVelAction, nil];
+////            [self runAction:fallActionSequence];
+//
+//
+////        }
+////    }
+//}
 
 //-(void)slide:(CCNode<Collidable> *)collider
 //{
@@ -445,10 +444,10 @@ static Player *singletonPlayer;
 }
 
 // reset fallAction so it can be created & run again
--(void)resetFallAction
-{
-    [[self fallAction] setStarted:NO];
-}
+//-(void)resetFallAction
+//{
+//    [[self fallAction] setStarted:NO];
+//}
 
 -(void)normalizeStamina
 {

@@ -21,7 +21,7 @@
 
 +(CCSprite *)generate:(CGPoint)origin
 {
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
+//    CGSize winSize = [[CCDirector sharedDirector] winSize];
     CCSprite *sprite = [[[self class] alloc] initWithSpriteFrameName];
     sprite.position = origin;
 //    [sprite fall:ccp(origin.x, winSize.height + sprite.contentSize.height/2)];
@@ -57,8 +57,8 @@
     CGFloat playerMinY, playerMaxY, playerMinX, playerMaxX; 
     CGFloat collidableMinY, collidableMaxY, collidableMinX, collidableMaxX;
     BOOL collide;
-    const int collisionThresholdX = 10; //pixels
-    const int collisionThresholdY = 10; //pixels
+//    const int collisionThresholdX = 10; //pixels
+//    const int collisionThresholdY = 10; //pixels
     
     // do we collide?
     collide = [self collideWithRect:[collider boundingBox]];

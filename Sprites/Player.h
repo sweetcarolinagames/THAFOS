@@ -12,7 +12,7 @@
 #import "PlayerRunAction.h"
 #import "PlayerDashAction.h"
 
-#define GRAV 300 //pixels/s
+#define MAX_HITS 3
 
 typedef enum {
     NONE = 0,
@@ -32,13 +32,9 @@ typedef enum {
     CGFloat maxDashDistance;
     CGFloat stamina;
     CGFloat maxStamina;
-    CGFloat maxFallHeight;
     MoveState moveState;
     CCSpriteBatchNode *spriteSheet;
     PlayerRunAction   *runAction;
-//    PlayerFallAction  *fallAction;
-//    CCSequence *jumpAction;
-//    PlayerFallTerminalAction *fallTermAction;
     CCNode<Collidable> *lastCollider;
     CCNode<Collidable> *currentCollider;
     CollisionLocation lastCollisionLocation;
@@ -57,9 +53,6 @@ typedef enum {
 @property (nonatomic, readwrite) MoveState moveState;
 @property (nonatomic, readwrite, retain) CCSpriteBatchNode *spriteSheet;
 @property (nonatomic, readwrite, retain) PlayerRunAction   *runAction;
-//@property (nonatomic, readwrite, retain) PlayerFallAction  *fallAction;
-@property (nonatomic, readwrite, retain) CCSequence *jumpAction;
-//@property (nonatomic, readwrite, retain) PlayerFallTerminalAction *fallTermAction;
 @property (nonatomic, readwrite, retain) CCNode<Collidable> *lastCollider;
 @property (nonatomic, readwrite, retain) CCNode<Collidable> *currentCollider;
 @property (nonatomic, readwrite) CollisionLocation lastCollisionLocation;
@@ -73,22 +66,15 @@ typedef enum {
 -(void)drawPlayer;
 -(void)run;
 -(void)takeHit;
--(CCAction *)jump;
--(CCAction *)wallJump:(CollisionLocation)collLoc;
--(void)endJump;
+//-(void)endJump;
 -(CCAction *)dash:(CGPoint)target;
 -(CCAction *)dash:(CGPoint)start:(CGPoint)end;
 -(void)endDash;
--(void)fall;
--(void)fallForever;
--(void)reachTerminalVelocity;
--(void)slide:(CCNode<Collidable> *)collider;
 -(BOOL)isInMoveState:(MoveState)state, ...;
 -(void)addMoveState:(MoveState)state;
 -(void)removeMoveState:(MoveState)state;
 -(void)clearMoveState;
 -(void)resetRunAction;
--(void)resetFallAction;
 -(void)normalizeStamina;
 -(void)flash:(ccColor3B)color:(ccTime)duration;
 -(void)resetColor;

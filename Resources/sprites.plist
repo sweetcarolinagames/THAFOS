@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>ufo.jpg</key>
+            <key>ufo.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{54,31}}</string>
@@ -27,7 +27,7 @@
             <key>size</key>
             <string>{64,64}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:997bd6c1161bf7ffdac7541e57b5071b$</string>
+            <string>$TexturePacker:SmartUpdate:045de1dbf75733ad519b244a8a5bb07c$</string>
             <key>textureFileName</key>
             <string>sprites.png</string>
         </dict>

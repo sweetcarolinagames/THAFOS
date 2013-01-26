@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "HelloWorldLayer.h"
 #import "GameplayScene.h"
 
 @implementation ggj13AppDelegate

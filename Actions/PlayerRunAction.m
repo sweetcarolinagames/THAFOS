@@ -23,10 +23,10 @@
 -(id)initWithVelocity:(CGPoint)vel
 {
     PlayerRunStepAction *runStepAction = [PlayerRunStepAction actionWithDuration:1 position:vel];
-//    CCMoveBy *runStepAction = [CCMoveBy actionWithDuration:1 position:ccp(0,0)];
     if((self = [super initWithAction:runStepAction]))
     {
         // init stuff
+//        NSLog(@"init run action");
     }
     
     return self;
@@ -55,12 +55,13 @@
 
 -(void)startWithTarget:(id)target
 {
-    [super startWithTarget:target];
     NSLog(@"START_RUN");
+    if(!self.started)
+        [super startWithTarget:target];
     self.started = YES;
-    CCRepeatForever *runAnimAction; 
-    runAnimAction = [self animAction];
-    [target runAction:runAnimAction];
+//    CCRepeatForever *runAnimAction; 
+//    runAnimAction = [self animAction];
+//    [target runAction:runAnimAction];
 }
 
 @end

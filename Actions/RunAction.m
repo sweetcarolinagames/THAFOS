@@ -31,7 +31,7 @@
 {
     [super startWithTarget:target];
     // run the animation
-    [target runAction:_animAction];
+//    [target runAction:_animAction];
 }
 
 @end

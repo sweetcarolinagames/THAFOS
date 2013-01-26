@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Player.h"
 
 @interface GameplaySpriteLayer : CCLayer {
+    @private
+    Player *_player;
     
+
 }
+
+@property (nonatomic,readwrite,retain) Player *player;
 
 @end

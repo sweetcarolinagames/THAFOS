@@ -12,6 +12,7 @@
 
 
 @implementation GameplayScene
+@synthesize bgLayer = _bgLayer;
 
 +(GameplayScene*) scene
 {

@@ -15,16 +15,39 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
-	
-	[director setDisplayFPS:YES];
-	
-	[director setOpenGLView:glView_];
-
-	// EXPERIMENTAL stuff.
-	// 'Effects' don't work correctly when autoscale is turned on.
-	// Use kCCDirectorResize_NoScale if you don't want auto-scaling.
-	[director setResizeMode:kCCDirectorResize_AutoScale];
-	
+    //*********************
+    // see http://www.cocos2d-iphone.org/forum/topic/12457 for reference
+    // on window-sizing code
+    //*********************
+    NSRect f = glView_.frame;
+    NSRect f2 = [window_ frame];
+    CGFloat titleBarHeight = f2.size.height - f.size.height; //i have titlebar and i whant calulate it height
+    
+    NSRect mainDisplayRect = [[NSScreen mainScreen] frame];
+    CGFloat display_width = mainDisplayRect.size.width;
+    CGFloat display_height = mainDisplayRect.size.height;
+    
+    double ar = mainDisplayRect.size.width / mainDisplayRect.size.height;
+    
+    CGFloat min_width = 768; //default window width on app start
+    CGFloat min_height = roundf(min_width / ar); // calculated window height on app start
+    
+    CGFloat work_width = 2560; //default working resolution witdh
+    CGFloat work_height = roundf(work_width / ar); //calculated working resolution height
+    
+    [window_ setFrame:NSMakeRect(0, 0, min_width, min_height + titleBarHeight) display:YES];
+    [glView_ setFrame:CGRectMake(f.origin.x, f.origin.y, work_width, work_height)];
+    [director setDisplayFPS:NO];
+    [director setOpenGLView:glView_];
+    [director setResizeMode:kCCDirectorResize_AutoScale];
+    [glView_ setFrame:CGRectMake(0, 0, min_width, min_height)];
+    [window_ setContentAspectRatio:NSMakeSize(display_width, display_height)];
+    
+    NSScreen * screen = window_.screen;
+    NSRect r = screen.frame;
+    [window_ setFrameTopLeftPoint:NSMakePoint(r.size.width/2 - window_.frame.size.width/2, r.size.height/2 + window_.frame.size.height/2)];
+    //*********************
+    
 	// Enable "moving" mouse event. Default no.
 	[window_ setAcceptsMouseMovedEvents:NO];
 	

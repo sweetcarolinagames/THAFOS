@@ -35,7 +35,7 @@ static Player *singletonPlayer;
     if(!initialized)
     {
         initialized = YES;
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"playerAnim.plist"];    
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];    
         singletonPlayer = [[Player alloc] initWithSpriteFrameName:@"ufo.jpg"];
     }
 }
@@ -68,7 +68,7 @@ static Player *singletonPlayer;
                                    self.position.y, 
                                    spriteTex.contentSize.width, 
                                    spriteTex.contentSize.height)];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"playerAnim.plist"];    
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];    
     }
     
     return self;
@@ -77,7 +77,7 @@ static Player *singletonPlayer;
 // todo: rename
 -(void)initAnimation
 {
-    self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"playerAnim.png"];
+    self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
     [self.spriteSheet addChild:self]; // clarification: spriteSheet obj contained in Player obj, but Player sprite is child sprite of spriteSheet 
 }
 

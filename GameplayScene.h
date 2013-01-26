@@ -15,8 +15,8 @@
 
 #import "cocos2d.h"
 
-@interface GameplayScene : CCScene {
-    
+@interface GameplayScene : CCScene 
+{    
     @private
     GameplayBackgroundLayer* _bgLayer;
     GameplaySpriteLayer *_spriteLayer;

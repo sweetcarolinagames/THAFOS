@@ -13,7 +13,8 @@
 
 -(id) init
 {
-    if ((self = [super init])) {
+    if ((self = [super init])) 
+    {
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         //Init the background.
         //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB565];

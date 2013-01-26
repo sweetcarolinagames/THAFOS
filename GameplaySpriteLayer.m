@@ -31,13 +31,16 @@
 -(void) update:(ccTime) dt
 {
     //handle keyboard input
-    if ([_keysPressed count] != 0) {
+    if ([_keysPressed count] != 0) 
+    {
         NSEnumerator *enumerator = [_keysPressed objectEnumerator];
         NSNumber *keyHit;
         
         //process all keys of interest that are held down
-        while ((keyHit = [enumerator nextObject])) {
-            switch ([keyHit unsignedIntValue]) {
+        while ((keyHit = [enumerator nextObject])) 
+        {
+            switch ([keyHit unsignedIntValue]) 
+            {
                 case NSLeftArrowFunctionKey:
                 case 'a':
                     NSLog(@"Moving Left!");
@@ -82,7 +85,8 @@
     NSNumber *keyHit 
         = [NSNumber numberWithUnsignedInt:[[event characters] characterAtIndex:0]];
 
-    switch ([keyHit unsignedIntValue]) {
+    switch ([keyHit unsignedIntValue]) 
+    {
             //these are the only keys I care about
         case NSDownArrowFunctionKey:
         case NSRightArrowFunctionKey:
@@ -104,14 +108,16 @@
 
 -(BOOL) ccKeyUp:(NSEvent *)event
 {
-    if (!_keysPressed) {
+    if (!_keysPressed) 
+    {
         _keysPressed = [[NSMutableSet alloc] init];
     }
     
     NSNumber *keyReleased 
         = [NSNumber numberWithUnsignedInt:[[event characters] characterAtIndex:0]];
     
-    switch ([keyReleased unsignedIntValue]) {
+    switch ([keyReleased unsignedIntValue]) 
+    {
         case NSDownArrowFunctionKey:
         case NSRightArrowFunctionKey:
         case NSLeftArrowFunctionKey:

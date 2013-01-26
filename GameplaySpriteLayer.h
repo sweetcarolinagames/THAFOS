@@ -11,6 +11,9 @@
 
 @interface GameplaySpriteLayer : CCLayer {
     
+    @private
+    NSMutableSet *_keysPressed;
+    
 }
 
 @end

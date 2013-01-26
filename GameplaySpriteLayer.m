@@ -30,9 +30,6 @@
 
 -(void) update:(ccTime) dt
 {
-    //todo: tie this to keyboard input
-    [_player run];
-    
     //handle keyboard input
     if ([_keysPressed count] != 0) {
         NSEnumerator *enumerator = [_keysPressed objectEnumerator];
@@ -44,11 +41,13 @@
                 case NSLeftArrowFunctionKey:
                 case 'a':
                     NSLog(@"Moving Left!");
+                    [_player move:MOVE_LEFT: 3.0f];
                     break;
                     
                 case NSRightArrowFunctionKey:
                 case 'd':
                     NSLog(@"Moving Right!");
+                    [_player move:MOVE_RIGHT :3.0f];
                     break;
                     
                 case NSDownArrowFunctionKey:

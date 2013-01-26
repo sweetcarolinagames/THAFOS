@@ -21,8 +21,6 @@
     // on window-sizing code
     //*********************
     NSRect f = glView_.frame;
-    NSRect f2 = [window_ frame];
-    CGFloat titleBarHeight = f2.size.height - f.size.height; //i have titlebar and i whant calulate it height
     
     NSRect mainDisplayRect = [[NSScreen mainScreen] frame];
     CGFloat display_width = mainDisplayRect.size.width;
@@ -36,7 +34,7 @@
     CGFloat work_width = 1200; //default working resolution witdh
     CGFloat work_height = roundf(work_width / ar); //calculated working resolution height
     
-    [window_ setFrame:NSMakeRect(0, 0, min_width, min_height + titleBarHeight) display:YES];
+    [window_ setFrame:NSMakeRect(0, 0, min_width, min_height) display:YES];
     [glView_ setFrame:CGRectMake(f.origin.x, f.origin.y, work_width, work_height)];
     [director setDisplayFPS:NO];
     [director setOpenGLView:glView_];

@@ -37,7 +37,7 @@ static Player *singletonPlayer;
     {
         initialized = YES;
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];    
-        singletonPlayer = [[Player alloc] initWithSpriteFrameName:@"ufo.jpg"];
+        singletonPlayer = [[Player alloc] initWithSpriteFrameName:@"ufo.png"];
     }
 }
 
@@ -173,56 +173,6 @@ static Player *singletonPlayer;
     
 }
 
-
-/*
- * Makes player do parabolic jump
- * @param
- * @return pointer to jump action sequence
- */
-//-(CCAction *)jump
-//{
-//    PlayerJumpAction *myJumpAction = nil;
-//    CCCallFunc *endJumpAction = nil;
-//    CCSequence *jumpActionSequence = nil;
-//    
-//    if(self.stamina >= jumpStaminaValue)
-//    {
-//        [self clearMoveState];
-//        [self addMoveState:JUMP];
-//        [self resetRunAction];
-//        [[SimpleAudioEngine sharedEngine]playEffect:@"jump.mp3"];
-//        
-//        const float jumpHeight = 45;
-//        const float jumpDistance = [self velocity].x;
-//        myJumpAction = [[PlayerJumpAction actionWithDuration:0.5 position:ccp(jumpDistance, jumpHeight) height:jumpHeight jumps:1] retain];
-//        endJumpAction = [[CCCallFunc actionWithTarget:self selector:@selector(endJump)] retain];
-//        jumpActionSequence = [[CCSequence actions:myJumpAction, endJumpAction, nil] retain];
-//        [self setJumpAction:jumpActionSequence];
-//        [self runAction:jumpActionSequence];
-//        
-//        self.stamina -= jumpStaminaValue;
-//        [self normalizeStamina];
-//    }
-//    else 
-//    {
-//        [self flash:ccc3(255, 255, 0) :0.25];
-//    }
-//    
-//    return jumpActionSequence;
-//}
-
-//-(CCAction *)wallJump:(CollisionLocation)collLoc
-
-/*
- * Ends jumping state & clears flag that allows player to begin falling
- * when jump is finished
- */
-//-(void)endJump
-//{
-//    [self removeMoveState:JUMP];
-//    [self resetFallAction];
-//}
-
 /*
  * Makes player dash in direction of target
  * @param target position for player to dash to
@@ -262,7 +212,7 @@ static Player *singletonPlayer;
         [self setVelocity:ccp(0,0)]; // set to zero so falling won't change position either
         
         self.stamina -= dashStaminaValue;
-        [self normalizeStamina];
+//        [self normalizeStamina];
     }
     else 
     {
@@ -277,48 +227,6 @@ static Player *singletonPlayer;
 {
     [self removeMoveState:DASH];
 }
-
-
-//-(void)fall
-//{
-//    [self clearMoveState];
-//    [self addMoveState:FALL];
-//    [self resetRunAction];
-//    
-////    if(self.fallTermAction != nil)
-////    {
-////        if(!self.fallTermAction.started)
-////        {
-//            [self fallForever];
-////            const float force = 50;
-////            PlayerFallStepAction *fallStepAction = [PlayerFallStepAction actionWithDuration:0.5 position:ccp(0, -force)];
-////            self.fallTermAction = [PlayerFallTerminalAction actionWithAction:fallStepAction rate:1];
-////            CCCallFunc *reachTermVelAction = [CCCallFunc actionWithTarget:self selector:@selector(reachTerminalVelocity)];
-////            CCSequence *fallActionSequence = [CCSequence actions:self.fallTermAction, reachTermVelAction, nil];
-////            [self runAction:fallActionSequence];
-//
-//
-////        }
-////    }
-//}
-
-//-(void)slide:(CCNode<Collidable> *)collider
-//{
-//    // code to make player slide along side of collider
-//    [self clearMoveState];
-//    [self addMoveState:SLIDE];
-//    [self resetRunAction];
-//    
-//    if(self.fallAction != nil)
-//    {
-//        if(!self.fallAction.started)
-//        {
-//            self.fallAction = [PlayerFallAction actionWithDurationAndForce:0.5 :50];
-//            [self runAction:self.fallAction];
-//        }
-//    }
-//}
-
 
 #pragma mark Collideable Protocol Methods
 /*
@@ -425,20 +333,6 @@ static Player *singletonPlayer;
 -(void)resetRunAction
 {
     [[self runAction] setStarted:NO];
-}
-
-// reset fallAction so it can be created & run again
-//-(void)resetFallAction
-//{
-//    [[self fallAction] setStarted:NO];
-//}
-
--(void)normalizeStamina
-{
-    if(self.stamina > self.maxStamina)
-        self.stamina = self.maxStamina;
-    else if(self.stamina < 0)
-        self.stamina = 0;
 }
 
 -(void)flash:(ccColor3B)color:(ccTime)duration //This code is here because Roger is a poop.

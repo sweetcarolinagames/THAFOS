@@ -71,7 +71,6 @@ typedef enum {
 -(void)drawPlayer;
 -(void)run;
 -(void)takeHit;
-//-(void)endJump;
 -(CCAction *)dash:(CGPoint)target;
 -(CCAction *)dash:(CGPoint)start:(CGPoint)end;
 -(void)endDash;
@@ -80,7 +79,6 @@ typedef enum {
 -(void)removeMoveState:(MoveState)state;
 -(void)clearMoveState;
 -(void)resetRunAction;
--(void)normalizeStamina;
 -(void)flash:(ccColor3B)color:(ccTime)duration;
 -(void)resetColor;
 -(void)kill;

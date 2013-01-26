@@ -14,7 +14,6 @@
 
 @synthesize velocity, maxDashDistance, stamina, maxStamina,
             maxFallHeight, moveState, spriteSheet, runAction,
-            fallAction, fallTermAction, jumpAction, 
             lastCollider, currentCollider, lastCollisionLocation;
 @synthesize hits  = _hits;
 @synthesize alive = _alive;
@@ -22,8 +21,8 @@
 @synthesize collisionPaddingY = _collisionPaddingY;
 @synthesize jumpTouchTimeMax = _jumpTouchTimeMax;
 
-static CGFloat jumpStaminaValue;
-static CGFloat wallJumpStaminaValue;
+//static CGFloat jumpStaminaValue;
+//static CGFloat wallJumpStaminaValue;
 static CGFloat dashStaminaValue;
 static Player *singletonPlayer;
 
@@ -49,8 +48,8 @@ static Player *singletonPlayer;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         self.runAction  = [[PlayerRunAction action] retain];
-        self.fallAction = [[PlayerFallAction action] retain];
-        self.fallTermAction  = [[PlayerFallTerminalAction actionWithDuration:0] retain];
+//        self.fallAction = [[PlayerFallAction action] retain];
+//        self.fallTermAction  = [[PlayerFallTerminalAction actionWithDuration:0] retain];
         self.maxDashDistance = 100;
         self.maxStamina      = 100;
         self.stamina         = self.maxStamina;
@@ -197,49 +196,49 @@ static Player *singletonPlayer;
  * @param
  * @return pointer to jump action sequence
  */
--(CCAction *)jump
-{
-    PlayerJumpAction *myJumpAction = nil;
-    CCCallFunc *endJumpAction = nil;
-    CCSequence *jumpActionSequence = nil;
-    
-    if(self.stamina >= jumpStaminaValue)
-    {
-        [self clearMoveState];
-        [self addMoveState:JUMP];
-        [self resetRunAction];
-        [[SimpleAudioEngine sharedEngine]playEffect:@"jump.mp3"];
-        
-        const float jumpHeight = 45;
-        const float jumpDistance = [self velocity].x;
-        myJumpAction = [[PlayerJumpAction actionWithDuration:0.5 position:ccp(jumpDistance, jumpHeight) height:jumpHeight jumps:1] retain];
-        endJumpAction = [[CCCallFunc actionWithTarget:self selector:@selector(endJump)] retain];
-        jumpActionSequence = [[CCSequence actions:myJumpAction, endJumpAction, nil] retain];
-        [self setJumpAction:jumpActionSequence];
-        [self runAction:jumpActionSequence];
-        
-        self.stamina -= jumpStaminaValue;
-        [self normalizeStamina];
-    }
-    else 
-    {
-        [self flash:ccc3(255, 255, 0) :0.25];
-    }
-    
-    return jumpActionSequence;
-}
+//-(CCAction *)jump
+//{
+//    PlayerJumpAction *myJumpAction = nil;
+//    CCCallFunc *endJumpAction = nil;
+//    CCSequence *jumpActionSequence = nil;
+//    
+//    if(self.stamina >= jumpStaminaValue)
+//    {
+//        [self clearMoveState];
+//        [self addMoveState:JUMP];
+//        [self resetRunAction];
+//        [[SimpleAudioEngine sharedEngine]playEffect:@"jump.mp3"];
+//        
+//        const float jumpHeight = 45;
+//        const float jumpDistance = [self velocity].x;
+//        myJumpAction = [[PlayerJumpAction actionWithDuration:0.5 position:ccp(jumpDistance, jumpHeight) height:jumpHeight jumps:1] retain];
+//        endJumpAction = [[CCCallFunc actionWithTarget:self selector:@selector(endJump)] retain];
+//        jumpActionSequence = [[CCSequence actions:myJumpAction, endJumpAction, nil] retain];
+//        [self setJumpAction:jumpActionSequence];
+//        [self runAction:jumpActionSequence];
+//        
+//        self.stamina -= jumpStaminaValue;
+//        [self normalizeStamina];
+//    }
+//    else 
+//    {
+//        [self flash:ccc3(255, 255, 0) :0.25];
+//    }
+//    
+//    return jumpActionSequence;
+//}
 
--(CCAction *)wallJump:(CollisionLocation)collLoc
+//-(CCAction *)wallJump:(CollisionLocation)collLoc
 
 /*
  * Ends jumping state & clears flag that allows player to begin falling
  * when jump is finished
  */
--(void)endJump
-{
-    [self removeMoveState:JUMP];
-    [self resetFallAction];
-}
+//-(void)endJump
+//{
+//    [self removeMoveState:JUMP];
+//    [self resetFallAction];
+//}
 
 /*
  * Makes player dash in direction of target
@@ -320,22 +319,22 @@ static Player *singletonPlayer;
 //    }
 }
 
--(void)slide:(CCNode<Collidable> *)collider
-{
-    // code to make player slide along side of collider
-    [self clearMoveState];
-    [self addMoveState:SLIDE];
-    [self resetRunAction];
-    
-    if(self.fallAction != nil)
-    {
-        if(!self.fallAction.started)
-        {
-            self.fallAction = [PlayerFallAction actionWithDurationAndForce:0.5 :50];
-            [self runAction:self.fallAction];
-        }
-    }
-}
+//-(void)slide:(CCNode<Collidable> *)collider
+//{
+//    // code to make player slide along side of collider
+//    [self clearMoveState];
+//    [self addMoveState:SLIDE];
+//    [self resetRunAction];
+//    
+//    if(self.fallAction != nil)
+//    {
+//        if(!self.fallAction.started)
+//        {
+//            self.fallAction = [PlayerFallAction actionWithDurationAndForce:0.5 :50];
+//            [self runAction:self.fallAction];
+//        }
+//    }
+//}
 
 
 #pragma mark Collideable Protocol Methods

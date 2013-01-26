@@ -10,10 +10,6 @@
 #import "cocos2d.h"
 #import "Collidable.h"
 #import "PlayerRunAction.h"
-#import "PlayerJumpAction.h"
-#import "PlayerJumpEaseAction.h"
-#import "PlayerFallAction.h"
-#import "PlayerFallTerminalAction.h"
 #import "PlayerDashAction.h"
 
 #define GRAV 300 //pixels/s
@@ -40,9 +36,9 @@ typedef enum {
     MoveState moveState;
     CCSpriteBatchNode *spriteSheet;
     PlayerRunAction   *runAction;
-    PlayerFallAction  *fallAction;
-    CCSequence *jumpAction;
-    PlayerFallTerminalAction *fallTermAction;
+//    PlayerFallAction  *fallAction;
+//    CCSequence *jumpAction;
+//    PlayerFallTerminalAction *fallTermAction;
     CCNode<Collidable> *lastCollider;
     CCNode<Collidable> *currentCollider;
     CollisionLocation lastCollisionLocation;
@@ -61,9 +57,9 @@ typedef enum {
 @property (nonatomic, readwrite) MoveState moveState;
 @property (nonatomic, readwrite, retain) CCSpriteBatchNode *spriteSheet;
 @property (nonatomic, readwrite, retain) PlayerRunAction   *runAction;
-@property (nonatomic, readwrite, retain) PlayerFallAction  *fallAction;
+//@property (nonatomic, readwrite, retain) PlayerFallAction  *fallAction;
 @property (nonatomic, readwrite, retain) CCSequence *jumpAction;
-@property (nonatomic, readwrite, retain) PlayerFallTerminalAction *fallTermAction;
+//@property (nonatomic, readwrite, retain) PlayerFallTerminalAction *fallTermAction;
 @property (nonatomic, readwrite, retain) CCNode<Collidable> *lastCollider;
 @property (nonatomic, readwrite, retain) CCNode<Collidable> *currentCollider;
 @property (nonatomic, readwrite) CollisionLocation lastCollisionLocation;

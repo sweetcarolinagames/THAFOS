@@ -8,7 +8,6 @@
 
 #import "GameplaySpriteLayer.h"
 
-
 @implementation GameplaySpriteLayer
 
 @synthesize player = _player;
@@ -24,7 +23,6 @@
 
 -(void) update:(ccTime) dt
 {
-    NSLog(@"updating");
     [_player run];
 }
 

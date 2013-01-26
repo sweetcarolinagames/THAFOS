@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "PlayerRunStepAction.h"
+//#import "PlayerRunStepAction.h"
 //#import "Player.h"
 
 @interface PlayerRunAction : CCRepeatForever {

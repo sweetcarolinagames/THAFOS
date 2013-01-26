@@ -7,6 +7,7 @@
 //
 
 #import "PlayerRunAction.h"
+#import "PlayerRunStepAction.h"
 #import "Player.h"
 
 

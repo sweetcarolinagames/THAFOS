@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HelloWorldLayer.h"
+#import "GameplayScene.h"
 
 @implementation ggj13AppDelegate
 @synthesize window=window_, glView=glView_;
@@ -52,7 +53,7 @@
 	[window_ setAcceptsMouseMovedEvents:NO];
 	
 	
-	[director runWithScene:[HelloWorldLayer scene]];
+	[director runWithScene:[GameplayScene scene]];
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed: (NSApplication *) theApplication

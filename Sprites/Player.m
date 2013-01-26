@@ -11,9 +11,10 @@
 
 @implementation Player
 
-@synthesize velocity, maxDashDistance, stamina, maxStamina,
+@synthesize maxDashDistance, stamina, maxStamina,
             maxFallHeight, moveState, spriteSheet, runAction,
             lastCollider, currentCollider, lastCollisionLocation;
+@synthesize velocity = _velocity;
 @synthesize hits  = _hits;
 @synthesize alive = _alive;
 @synthesize collisionPaddingX = _collisionPaddingX;
@@ -52,7 +53,7 @@ static Player *singletonPlayer;
         self.maxDashDistance = 100;
         self.maxStamina      = 100;
         self.stamina         = self.maxStamina;
-        self.velocity = ccp(0.0, 0.0);
+        self.velocity = ccp(100.0, 0.0);
         self.position = ccp(winSize.width/4, 100);
         _hits  = 0;
         _alive = YES;
@@ -132,26 +133,9 @@ static Player *singletonPlayer;
  */
 -(void)run
 {    
-    if(self.lastCollider != self.currentCollider)
-    {
-        [self clearMoveState];
-        [self addMoveState:RUN];
-//        [self resetFallAction];
-        
-        if(self.runAction != nil)
-        {
-            // only start running if not already started
-            if(!self.runAction.started) 
-            {
-                [self setVelocity:ccp(0,0)];
-                 self.runAction = [PlayerRunAction actionWithVelocity:self.velocity];
-                [self runAction:self.runAction];
-            }
-        }
-    }
-    // gradually restore player stamina
-    self.stamina += 0.25;
-    [self normalizeStamina];
+//    [self setVelocity:ccp(0,0)];
+     self.runAction = [PlayerRunAction actionWithVelocity:_velocity];
+    [self runAction:self.runAction];
 }
 
 /**
@@ -476,6 +460,13 @@ static Player *singletonPlayer;
 -(void)kill
 {
     _alive = NO;
+}
+
+-(void)move:(MoveState)state:(CGFloat)pixels
+{
+    // negate for moving left
+    pixels *= (state == MOVE_LEFT ? -1 : 1);
+    [self setPosition:ccp(self.position.x + pixels, self.position.y)];
 }
 
 @end

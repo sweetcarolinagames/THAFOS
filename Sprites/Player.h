@@ -21,14 +21,19 @@ typedef enum {
     DOUBLE_JUMP = (1 << 2),
     DASH = (1 << 3),
     SLIDE = (1 << 4),
-    FALL = (1 << 5)
+    FALL = (1 << 5),
+    
+    // spaceship
+    MOVE_IDLE = (1 << 6), 
+    MOVE_LEFT = (1 << 7),
+    MOVE_RIGHT = (1 << 8)
 }MoveState;
 
 @interface Player : CCSprite <Collidable> {
     @private
     int     _hits;
     BOOL    _alive;
-    CGPoint velocity;
+    CGPoint _velocity;
     CGFloat maxDashDistance;
     CGFloat stamina;
     CGFloat maxStamina;
@@ -79,6 +84,7 @@ typedef enum {
 -(void)flash:(ccColor3B)color:(ccTime)duration;
 -(void)resetColor;
 -(void)kill;
+-(void)move:(MoveState)state:(CGFloat)pixels;
 
 
 @end

@@ -28,9 +28,9 @@
     CGFloat display_width = mainDisplayRect.size.width;
     CGFloat display_height = mainDisplayRect.size.height;
     
-    double ar = mainDisplayRect.size.height / mainDisplayRect.size.width;
+    double ar = mainDisplayRect.size.width / mainDisplayRect.size.height;
     
-    CGFloat min_width = 600; //default window width on app start
+    CGFloat min_width = 768; //default window width on app start
     CGFloat min_height = roundf(min_width / ar); // calculated window height on app start
     
     CGFloat work_width = 1200; //default working resolution witdh

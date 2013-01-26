@@ -19,7 +19,11 @@
     
     @private
     GameplayBackgroundLayer* _bgLayer;
+<<<<<<< HEAD
     GameplaySpriteLayer *_spriteLayer;
+=======
+    GameplaySpriteLayer* _spriteLayer;
+>>>>>>> ec83c4aea25c7ee48eecb19583b2d8b4d0bf48f0
     
 }
 
@@ -27,5 +31,9 @@
 
 @property (nonatomic, readonly) GameplayBackgroundLayer *bgLayer;
 @property (nonatomic, readonly) GameplaySpriteLayer *spriteLayer;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec83c4aea25c7ee48eecb19583b2d8b4d0bf48f0
 
 @end

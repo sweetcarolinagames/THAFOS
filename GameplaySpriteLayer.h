@@ -10,11 +10,11 @@
 #import "cocos2d.h"
 #import "Player.h"
 
-@interface GameplaySpriteLayer : CCLayer {
+@interface GameplaySpriteLayer : CCLayer 
+{
     @private
     Player *_player;
-    
-
+    NSMutableSet *_keysPressed;
 }
 
 @property (nonatomic,readwrite,retain) Player *player;

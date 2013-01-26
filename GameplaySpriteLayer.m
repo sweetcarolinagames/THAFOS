@@ -20,6 +20,7 @@
         [self addChild:_player];
         
         self.isKeyboardEnabled = YES;
+        [self initKeysPressed];
         
         [self scheduleUpdate];
         
@@ -80,6 +81,14 @@
 
 
 #pragma mark Key Delegate Methods
+-(void)initKeysPressed
+{
+    if (!_keysPressed) 
+    {
+        _keysPressed = [[NSMutableSet alloc] init];
+    }
+}
+
 -(BOOL) ccKeyDown:(NSEvent *)event
 {
     NSNumber *keyHit 
@@ -108,10 +117,10 @@
 
 -(BOOL) ccKeyUp:(NSEvent *)event
 {
-    if (!_keysPressed) 
-    {
-        _keysPressed = [[NSMutableSet alloc] init];
-    }
+//    if (!_keysPressed) 
+//    {
+//        _keysPressed = [[NSMutableSet alloc] init];
+//    }
     
     NSNumber *keyReleased 
         = [NSNumber numberWithUnsignedInt:[[event characters] characterAtIndex:0]];

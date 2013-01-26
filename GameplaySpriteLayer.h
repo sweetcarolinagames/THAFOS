@@ -19,4 +19,6 @@
 
 @property (nonatomic,readwrite,retain) Player *player;
 
+-(void)initKeysPressed;
+
 @end

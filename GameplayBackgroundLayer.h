@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface GameplayBackgroundLayer : CCLayer {
-    
+@interface GameplayBackgroundLayer : CCLayer 
+{    
     @private
     CCSprite *_backgroundImage;
 }

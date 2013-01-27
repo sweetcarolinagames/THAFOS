@@ -9,15 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Sprites/Player.h"
+#import "Sprites/Citizen.h"
 
 @interface GameplaySpriteLayer : CCLayer 
 {
     @private
     Player *_player;
+    Citizen *_citizen1;
     NSMutableSet *_keysPressed;
 }
 
 @property (nonatomic,readwrite,retain) Player *player;
+@property (nonatomic,readwrite,retain) Citizen *citizen1;
 
 -(void)initKeysPressed;
 

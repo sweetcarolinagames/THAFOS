@@ -11,6 +11,7 @@
 @implementation GameplaySpriteLayer
 
 @synthesize player = _player;
+@synthesize citizen1 = _citizen1;
 
 - (id)init 
 {
@@ -18,6 +19,8 @@
     {
         _player = [Player getPlayer];
         [self addChild:_player];
+        
+//        _citizen1 = [Citizen 
         
         self.isKeyboardEnabled = YES;
         [self initKeysPressed];
@@ -44,20 +47,17 @@
             {
                 case NSLeftArrowFunctionKey:
                 case 'a':
-                    NSLog(@"Moving Left!");
                     [_player move:MOVE_LEFT: 3.0f];
                     break;
                     
                 case NSRightArrowFunctionKey:
                 case 'd':
-                    NSLog(@"Moving Right!");
                     [_player move:MOVE_RIGHT :3.0f];
                     break;
                     
                 case NSDownArrowFunctionKey:
                 case ' ':
                 case 's':
-                    NSLog(@"Shooting Down!");
                     break;
                     
                 default:

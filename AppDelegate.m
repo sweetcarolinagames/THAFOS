@@ -27,10 +27,10 @@
     
     double ar = mainDisplayRect.size.width / mainDisplayRect.size.height;
     
-    CGFloat min_width = 768; //default window width on app start
+    CGFloat min_width = 1024; //default window width on app start
     CGFloat min_height = roundf(min_width / ar); // calculated window height on app start
     
-    CGFloat work_width = 1200; //default working resolution witdh
+    CGFloat work_width = 1280; //default working resolution witdh
     CGFloat work_height = roundf(work_width / ar); //calculated working resolution height
     
     [window_ setFrame:NSMakeRect(0, 0, min_width, min_height) display:YES];

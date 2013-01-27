@@ -17,6 +17,7 @@
     if ((self = [super init])) 
     {
         _batteryMeter = [[Battery alloc] init];
+        [self addChild:_batteryMeter];
     }
     
     return self;

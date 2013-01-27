@@ -19,7 +19,7 @@
         //Init the background.
         //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB565];
         //_backgroundImage = [CCSprite spriteWithFile:@"Field.pvr.ccz"];
-        _backgroundImage = [CCSprite spriteWithFile:@"cityscape.jpeg"];
+        _backgroundImage = [CCSprite spriteWithFile:@"background.png"];
         _backgroundImage.position = ccp(winSize.width/2, winSize.height/2);
         [self addChild:_backgroundImage z:0];
     }

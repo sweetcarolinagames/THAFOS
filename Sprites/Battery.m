@@ -28,7 +28,7 @@
         _batteryDecay = 0.1;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        self.position  = ccp(winSize.width*7/8, winSize.height*1/8);
+        self.position  = ccp(winSize.width*7/8, winSize.height*10/12);
         
         
         [self schedule:@selector(decay:) interval:0.1]; //sec.

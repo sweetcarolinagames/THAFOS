@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface GameplayHUDLayer : CCLayer {
-    
+@interface GameplayHUDLayer : CCLayer 
+{
+    @private
+    CCSprite *_batteryMeter;
 }
 
 @end

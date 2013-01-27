@@ -7,8 +7,29 @@
 //
 
 #import "GameplayHUDLayer.h"
+#import "Battery.h"
 
 
 @implementation GameplayHUDLayer
+
+-(id) init
+{
+    if ((self = [super init])) 
+    {
+        _batteryMeter = [[Battery alloc] init];
+    }
+    
+    return self;
+}
+
+
+-(void) dealloc
+{
+    [super dealloc];
+    
+    [_batteryMeter release];
+    
+    _batteryMeter = nil;    
+}
 
 @end

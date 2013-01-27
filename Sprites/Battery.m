@@ -8,6 +8,7 @@
 
 #import "Battery.h"
 #import "Constants.h"
+#import "SimpleAudioEngine.h"
 #import "math.h"
 
 @interface Battery (private)
@@ -41,6 +42,15 @@
 -(void) decay:(ccTime) dt
 {
     [self setBatteryLife:[self getBatteryLife] - _batteryDecay];
+    
+//    if([self getBatteryLife] < 66.6)
+//    {
+//        [[SimpleAudioEngine sharedEngine] playEffect:@"zap1.mp3"];
+//
+//    }
+//    
+    
+    
 }
 
 

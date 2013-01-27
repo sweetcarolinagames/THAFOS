@@ -48,7 +48,8 @@
         
         
         //begin bgmusic and ufo sounds!        
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.5f];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.15f];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.9f];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme-dst-arcofdawn.mp3" loop:YES];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"20473__dj-chronos__ufo.mp3" loop:YES];
         

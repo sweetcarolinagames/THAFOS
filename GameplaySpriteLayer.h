@@ -17,7 +17,7 @@
     @private
     Battery *_batteryMeter;
     Player  *_player;
-    Citizen *_citizen1;
+    NSMutableArray *_citizens;
     NSMutableSet *_keysPressed;
     
     BOOL _canShoot;

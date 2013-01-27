@@ -36,7 +36,9 @@
         //add the battery
         _battery = [[Battery alloc] init];
         [self addChild:_battery];
-        
+//        _citizen1 = [Citizen initWithSpriteFrameName:CITIZEN_FEMALE :CITIZEN_RIGHT];
+//        [self addChild:_citizen1];
+//        [_citizen1 run];
         
         //setup input
         self.isKeyboardEnabled = YES;

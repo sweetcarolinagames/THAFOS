@@ -228,7 +228,7 @@
 {
     // random male/female, left/right direction
     Citizen *newCitizen = [Citizen initWithSpriteFrameName:rand()%2 :rand()%2];
-    newCitizen.position = ccp(100, 200);
+    newCitizen.position = ccp(rand()%600 + 50, 95);
     [newCitizen run];
     // add to sprite layer
     [self addChild:newCitizen];

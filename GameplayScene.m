@@ -10,9 +10,17 @@
 #import "GameplayBackgroundLayer.h"
 #import "Constants.h"
 
+@interface GameplayScene (private)
+
+-(void) loadSpriteSheet;
+
+@end
+
+
 
 @implementation GameplayScene
 @synthesize bgLayer = _bgLayer;
+@synthesize hudLayer = _hudLayer;
 @synthesize spriteLayer = _spriteLayer;
 
 +(GameplayScene*) scene
@@ -25,8 +33,13 @@
 {
     if((self = [super init])) 
     {
+        // Background Layer
         _bgLayer   = [GameplayBackgroundLayer node]; //auto-release object
         [self addChild:_bgLayer z:BACKGROUND_LAYER_LEVEL];        
+
+        // HUD Layer
+        _hudLayer = [GameplayHUDLayer node]; //auto-release object
+        [self addChild:_hudLayer z:HUD_LAYER_LEVEL];
         
         // Sprite Layer
         _spriteLayer = [GameplaySpriteLayer node]; //auto-release object
@@ -48,5 +61,13 @@
 {
     [super dealloc];
 }
+
+-(void) loadSpriteSheets
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];
+    CCSpriteBatchNode *spritesheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
+    [self addChild:spritesheet];
+}
+
 
 @end

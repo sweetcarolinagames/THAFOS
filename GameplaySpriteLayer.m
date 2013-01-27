@@ -203,9 +203,17 @@
         {
             if([laserBolt collide:citizen] > NO_COLLISION)
             {
+                id citizenFadeOutAction = [citizen runAction:[CCFadeOut actionWithDuration:0.25f]];
+                id removeCitizenFromLayerAction = [CCCallBlock actionWithBlock:^
+                                                   {
+                                                       // set citizen to be released
+                                                       [citizenToRelease addObject:citizen];
+                                                   }];
+               [citizen runAction:[CCSequence actions:citizenFadeOutAction, removeCitizenFromLayerAction, nil]];
+                
                 [laserBoltsToRelease addObject:laserBolt];
-                [citizenToRelease addObject:citizen];
-                [citizen runAction:[CCFadeOut actionWithDuration:0.25f]];
+//                [citizenToRelease addObject:citizen];
+
                 
                 if(citizen.goodHeart)
                 {
@@ -235,7 +243,7 @@
     for(Citizen *citizen in citizenToRelease)
     {
         [self.citizens removeObject:citizen];
-//        [self removeChild:citizen cleanup:YES];
+        [self removeChild:citizen cleanup:YES];
     }
     
     // garbage collection
@@ -275,7 +283,7 @@
 {
     _canGenerateCitizen = YES;
 }
-
+                                               
 
 #pragma mark Key Delegate Methods
 -(void)initKeysPressed

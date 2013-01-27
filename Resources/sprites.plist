@@ -4,122 +4,122 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>battery1.png</key>
+            <key>Alien_ggj13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{186,2},{92,184}}</string>
-                <key>offset</key>
-                <string>{0,1}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{4,7},{92,184}}</string>
-                <key>sourceSize</key>
-                <string>{100,200}</string>
-            </dict>
-            <key>battery2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,374},{94,182}}</string>
-                <key>offset</key>
-                <string>{-2,1}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{94,182}}</string>
-                <key>sourceSize</key>
-                <string>{100,200}</string>
-            </dict>
-            <key>battery3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{186,374},{92,182}}</string>
-                <key>offset</key>
-                <string>{0,1}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{4,8},{92,182}}</string>
-                <key>sourceSize</key>
-                <string>{100,200}</string>
-            </dict>
-            <key>battery4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{96,190},{92,182}}</string>
+                <string>{{2,2},{334,152}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{4,8},{92,182}}</string>
+                <string>{{0,1},{334,152}}</string>
                 <key>sourceSize</key>
-                <string>{100,200}</string>
+                <string>{334,156}</string>
             </dict>
-            <key>battery5.png</key>
+            <key>EmptyBat_ggj13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{186,96},{92,182}}</string>
+                <string>{{388,239},{162,77}}</string>
                 <key>offset</key>
-                <string>{0,-1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{4,10},{92,182}}</string>
+                <string>{{3,3},{162,77}}</string>
                 <key>sourceSize</key>
-                <string>{100,200}</string>
+                <string>{168,83}</string>
             </dict>
-            <key>battery6.png</key>
+            <key>FullBat_ggj13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{372,2},{92,182}}</string>
-                <key>offset</key>
-                <string>{0,-1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{4,10},{92,182}}</string>
-                <key>sourceSize</key>
-                <string>{100,200}</string>
-            </dict>
-            <key>battery7.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,188},{92,184}}</string>
-                <key>offset</key>
-                <string>{1,-2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{5,10},{92,184}}</string>
-                <key>sourceSize</key>
-                <string>{100,200}</string>
-            </dict>
-            <key>battery8.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{92,184}}</string>
-                <key>offset</key>
-                <string>{0,1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{4,5},{92,184}}</string>
-                <key>sourceSize</key>
-                <string>{100,196}</string>
-            </dict>
-            <key>ufo.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,470},{54,31}}</string>
+                <string>{{312,160},{162,77}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{54,31}}</string>
+                <string>{{3,3},{162,77}}</string>
                 <key>sourceSize</key>
-                <string>{54,31}</string>
+                <string>{168,83}</string>
+            </dict>
+            <key>HalfBat_ggj13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{338,81},{162,77}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,3},{162,77}}</string>
+                <key>sourceSize</key>
+                <string>{168,83}</string>
+            </dict>
+            <key>Laser_ggj13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{502,2},{5,17}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{5,17}}</string>
+                <key>sourceSize</key>
+                <string>{5,17}</string>
+            </dict>
+            <key>LowBat_ggj13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{338,2},{162,77}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,3},{162,77}}</string>
+                <key>sourceSize</key>
+                <string>{168,83}</string>
+            </dict>
+            <key>RedHeart_ggj13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{260,156},{50,46}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{50,46}}</string>
+                <key>sourceSize</key>
+                <string>{52,46}</string>
+            </dict>
+            <key>man_silh_ggj13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{260,239},{126,256}}</string>
+                <key>offset</key>
+                <string>{1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{126,256}}</string>
+                <key>sourceSize</key>
+                <string>{128,256}</string>
+            </dict>
+            <key>woman_silh_ggj13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,156},{126,256}}</string>
+                <key>offset</key>
+                <string>{1,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{126,256}}</string>
+                <key>sourceSize</key>
+                <string>{128,256}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -131,7 +131,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:eda23189ac5a616d3d98c810b1ec4119$</string>
+            <string>$TexturePacker:SmartUpdate:6731db3011cc70f8811bdc4fffb3642e$</string>
             <key>textureFileName</key>
             <string>sprites.png</string>
         </dict>

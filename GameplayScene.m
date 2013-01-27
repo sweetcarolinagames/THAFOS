@@ -18,7 +18,6 @@
 
 @implementation GameplayScene
 @synthesize bgLayer = _bgLayer;
-@synthesize hudLayer = _hudLayer;
 @synthesize spriteLayer = _spriteLayer;
 
 +(GameplayScene*) scene
@@ -37,10 +36,6 @@
         // Background Layer
         _bgLayer   = [GameplayBackgroundLayer node]; //auto-release object
         [self addChild:_bgLayer z:BACKGROUND_LAYER_LEVEL];        
-
-        // HUD Layer
-        _hudLayer = [GameplayHUDLayer node]; //auto-release object
-        [self addChild:_hudLayer z:HUD_LAYER_LEVEL];
         
         // Sprite Layer
         _spriteLayer = [GameplaySpriteLayer node]; //auto-release object

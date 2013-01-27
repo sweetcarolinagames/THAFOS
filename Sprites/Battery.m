@@ -8,6 +8,7 @@
 
 #import "Battery.h"
 #import "Constants.h"
+#import "SimpleAudioEngine.h"
 #import "math.h"
 
 @interface Battery (private)
@@ -28,7 +29,7 @@
         _batteryDecay = 0.1;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        self.position  = ccp(winSize.width*7/8, winSize.height*10/12);
+        self.position  = ccp(winSize.width*11/12, winSize.height*15/17);
         
         
         [self schedule:@selector(decay:) interval:0.1]; //sec.
@@ -41,6 +42,15 @@
 -(void) decay:(ccTime) dt
 {
     [self setBatteryLife:[self getBatteryLife] - _batteryDecay];
+    
+//    if([self getBatteryLife] < 66.6)
+//    {
+//        [[SimpleAudioEngine sharedEngine] playEffect:@"zap1.mp3"];
+//
+//    }
+//    
+    
+    
 }
 
 

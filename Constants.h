@@ -12,11 +12,13 @@
 //Layer Orderings
 #define BACKGROUND_LAYER_LEVEL 0
 #define SPRITE_LAYER_LEVEL 1
-#define HUD_LAYER_LEVEL 2
 
 //Battery Information
 #define MAX_BATTERY_LIFE 100.0
 #define BATTERY_STAGES 4
 #define BATTERY_STAGE_DELTA (MAX_BATTERY_LIFE / BATTERY_STAGES)
+
+//Laser Information
+#define LASER_TAG 777
 
 #endif

@@ -35,6 +35,7 @@
         self.isKeyboardEnabled = YES;
         [self initKeysPressed];
         
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.25f];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"dst-2ndballad.mp3"];
         
         //setup gameloop
@@ -59,6 +60,7 @@
             {
                 case ' ':
                 {
+                    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
                     [[CCDirector sharedDirector] replaceScene:[GameplayScene scene]];
                 }
                     break;

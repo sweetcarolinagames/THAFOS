@@ -27,12 +27,13 @@
     CGFloat display_height = mainDisplayRect.size.height;
     
     double ar = mainDisplayRect.size.width / mainDisplayRect.size.height;
+//    ar = 4/3;
     
     CGFloat min_width = 1024; //default window width on app start
-    CGFloat min_height = roundf(min_width / ar); // calculated window height on app start
+    CGFloat min_height = 800; // calculated window height on app start
     
-    CGFloat work_width = 1280; //default working resolution witdh
-    CGFloat work_height = roundf(work_width / ar); //calculated working resolution height
+    CGFloat work_width = 1024; //default working resolution witdh
+    CGFloat work_height = 768; //calculated working resolution height
     
     [window_ setFrame:NSMakeRect(0, 0, min_width, min_height) display:YES];
     [glView_ setFrame:CGRectMake(f.origin.x, f.origin.y, work_width, work_height)];

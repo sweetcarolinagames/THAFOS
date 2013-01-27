@@ -37,7 +37,7 @@
         self.maxStamina      = 100;
         self.stamina         = self.maxStamina;
         self.velocity = ccp(100.0, 0.0);
-        self.position = ccp(winSize.width/4, winSize.height * 0.73);
+        self.position = ccp(winSize.width/4, winSize.height * 0.75);
         _hits  = 0;
         _alive = YES;
         _collisionPaddingX = 0;

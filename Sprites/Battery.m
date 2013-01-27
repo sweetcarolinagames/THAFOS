@@ -33,7 +33,7 @@
         self.doSecondBatteryLifeWarning = YES;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        self.position  = ccp(winSize.width*11/12, winSize.height*15/17);
+        self.position  = ccp(winSize.width*10.8/12, winSize.height*15.5/17);
         
         
         [self schedule:@selector(decay:) interval:0.1]; //sec.

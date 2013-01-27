@@ -7,6 +7,7 @@
 //
 
 #import "GameplaySpriteLayer.h"
+#import "GameOverScene.h"
 #import "LaserBolt.h"
 #import "TrueHeart.h"
 #import "SimpleAudioEngine.h"
@@ -27,7 +28,7 @@
 
 @implementation GameplaySpriteLayer
 
-@synthesize player = _player;
+@synthesize player   = _player;
 @synthesize citizens = _citizens;
 @synthesize laserBolts = _laserBolts;
 @synthesize canShoot = _canShoot;
@@ -41,7 +42,7 @@
     if ((self = [super init])) 
     {
         //add the player
-        _player = [Player getPlayer];
+        _player = [[Player alloc] init];
         [self addChild:_player];
         
         //add the battery
@@ -91,7 +92,10 @@
     //check if we still have battery!
     if ([_battery getBatteryLife] < 0.1) {
         //if we're less than 0.1, we are dead.
-        
+        GameOverScene *gameOverScene = [GameOverScene node];
+		[gameOverScene.layer.label setString:[NSString stringWithFormat:@"%d", self.numberOfHeartsCollected]];
+		[[CCDirector sharedDirector] replaceScene:gameOverScene];
+
     }
  
     
@@ -197,11 +201,14 @@
     [_battery release];
     [_citizens release];
     [_laserBolts release];
+    [_player release];
     
+
     _keysPressed = nil;
     _battery = nil;
     _citizens = nil;
     _laserBolts = nil;
+    _player = nil;
 }
 
 

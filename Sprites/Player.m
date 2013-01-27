@@ -21,35 +21,18 @@
 @synthesize collisionPaddingY = _collisionPaddingY;
 @synthesize jumpTouchTimeMax = _jumpTouchTimeMax;
 
-//static CGFloat jumpStaminaValue;
-//static CGFloat wallJumpStaminaValue;
-static CGFloat dashStaminaValue;
-static Player *singletonPlayer;
-
-+(Player*) getPlayer
-{
-    return singletonPlayer;
-}
-
-+(void)initialize {
-    static BOOL initialized = NO;
-    if(!initialized)
-    {
-        initialized = YES;
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];    
-        singletonPlayer = [[Player alloc] initWithSpriteFrameName:@"Alien_ggj13.png"];
-    }
-}
 
 -(id)init
 {    
     if((self = [super init]))
     {   
         CGSize winSize = [[CCDirector sharedDirector] winSize];
+        CCSpriteFrame* alienFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Alien_ggj13.png"];        
+        [self setDisplayFrame:alienFrame];
+        
+
         
         self.runAction  = [[PlayerRunAction action] retain];
-//        self.fallAction = [[PlayerFallAction action] retain];
-//        self.fallTermAction  = [[PlayerFallTerminalAction actionWithDuration:0] retain];
         self.maxDashDistance = 100;
         self.maxStamina      = 100;
         self.stamina         = self.maxStamina;
@@ -60,27 +43,12 @@ static Player *singletonPlayer;
         _collisionPaddingX = 0;
         _collisionPaddingY = 0;
 
-        dashStaminaValue     = self.maxStamina * 0.15f;
-        moveState = FALL;
-        
-        CCTexture2D* spriteTex = [self texture];
-        [self setTextureRect:CGRectMake(
-                                   self.position.x, 
-                                   self.position.y, 
-                                   spriteTex.contentSize.width, 
-                                   spriteTex.contentSize.height)];
-//        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];    
+        moveState = FALL;        
     }
     
     return self;
 }
 
-// todo: rename
-//-(void)initAnimation
-//{
-//    self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
-//    [self.spriteSheet addChild:self]; // clarification: spriteSheet obj contained in Player obj, but Player sprite is child sprite of spriteSheet 
-//}
 
 // draw player bounding box & other player-related graphics
 -(void)drawPlayer

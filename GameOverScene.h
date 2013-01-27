@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 
 //The one GameOverLayer to be included in this scene.
-@interface GameOverLayer : CCLayer 
+@interface GameOverLayer : CCLayerColor
 {
     @private
     CCSprite *_backgroundImage;

@@ -22,25 +22,37 @@
 @synthesize player = _player;
 @synthesize citizen1 = _citizen1;
 @synthesize canShoot = _canShoot;
+@synthesize battery  = _battery;
 
 - (id)init 
 {
     if ((self = [super init])) 
     {
+        //add the player
         _player = [Player getPlayer];
         [self addChild:_player];
         
+        //add the battery
+        _battery = [[Battery alloc] init];
+        [self addChild:_battery];
+        
+        
+        //setup input
         self.isKeyboardEnabled = YES;
         [self initKeysPressed];
+
         
+        //enable weaponry
         _canShoot = YES;
-        [self scheduleUpdate];
+        
         
         //begin bgmusic and ufo sounds!        
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.5f];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme-dst-arcofdawn.mp3" loop:YES];
-
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"20473__dj-chronos__ufo.mp3" loop:YES];
+        
+        
+        [self scheduleUpdate];
 
 
     }
@@ -121,8 +133,10 @@
     [super dealloc];
     
     [_keysPressed release];
+    [_battery release];
     
     _keysPressed = nil;
+    _battery = nil;
 }
 
 

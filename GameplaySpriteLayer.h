@@ -10,18 +10,21 @@
 #import "cocos2d.h"
 #import "Sprites/Player.h"
 #import "Sprites/Citizen.h"
+#import "Sprites/Battery.h"
 
 @interface GameplaySpriteLayer : CCLayer 
 {
     @private
-    Player *_player;
+    Battery *_batteryMeter;
+    Player  *_player;
     Citizen *_citizen1;
     NSMutableSet *_keysPressed;
     
     BOOL _canShoot;
 }
 
-@property (nonatomic,readwrite,retain) Player *player;
+@property (nonatomic,readwrite,assign) Battery *battery;
+@property (nonatomic,readwrite,retain) Player  *player;
 @property (nonatomic,readwrite,retain) Citizen *citizen1;
 @property (nonatomic,readonly) BOOL canShoot;
 

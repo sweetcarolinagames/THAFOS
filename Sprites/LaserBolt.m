@@ -43,17 +43,17 @@
 
 -(CollisionLocation)collide:(CCNode *)collidableSprite
 {
-    
+    return nil;
 }
 
 -(BOOL)collideWithRect:(CGRect)rect
 {
-    
+    return NO;
 }
 
 -(BOOL)collideWithSprite:(CCSprite *)sprite
 {
-    
+    return NO;
 }
 
 -(void)drawBoundingBox:(float)lineWidth: (float)pointSize: (ccColor4B)color

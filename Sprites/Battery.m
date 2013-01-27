@@ -22,9 +22,9 @@
 
 -(id) init
 {
-    if ((self = [super init])) {
-        [self initWithSpriteFrameName:@"battery1.png"];
-        _batteryLife = 100.0;
+    if ((self = [super init])) 
+    {
+        [self setBatteryLife:100.0];
         _batteryDecay = 0.1;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -73,7 +73,7 @@
 
 -(NSString*) getChargeLevelIconName:(CGFloat)chargeLevel
 {
-    int iconIndex =  BATTERY_STAGES - ceil(chargeLevel/BATTERY_STAGE_DELTA);
+    int iconIndex =  (BATTERY_STAGES - ceil(chargeLevel/BATTERY_STAGE_DELTA))+1;
     return [NSString stringWithFormat:@"battery%d.png", iconIndex];
 }
 

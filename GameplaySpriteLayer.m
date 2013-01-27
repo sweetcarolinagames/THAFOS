@@ -260,7 +260,7 @@
                 {
                     // player hit bad heart
                     [[SimpleAudioEngine sharedEngine] playEffect:@"fakeheartbeat.mp3"];
-                    [_battery setBatteryLife:([_battery getBatteryLife] - BAD_HEART_PENALTY)];
+                    [_battery setBatteryLife:([_battery getBatteryLife] - BAD_HEART_PENALTY*(EASY_DELAY/self.citizenGenerateDelay))];
                 }
             }
         }
@@ -285,11 +285,12 @@
 
 -(void) addCitizen
 {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
     // random male/female, left/right direction
     Citizen *newCitizen = [[Citizen alloc] init];
-    newCitizen.position = ccp(rand()%600 + 50, 95);
     newCitizen.goodHeart = ( rand()%2 ) ? YES : NO;
-    [newCitizen run];
+
+    newCitizen.position = (newCitizen.dir == CITIZEN_LEFT) ? ccp(winSize.width + newCitizen.contentSize.width, 95) : ccp(0 - newCitizen.contentSize.width, 95);
     // add to sprite layer
     [self addChild:newCitizen];
     // add to list of colliders
@@ -303,6 +304,11 @@
     [self performSelector:@selector(resetCitizenGenerateFlag:) 
                withObject:nil 
                afterDelay:self.citizenGenerateDelay];
+    
+    // adjust speed based on difficulty
+    CGFloat speed = 0.1f * self.citizenGenerateDelay;
+    // make citizen move
+    [newCitizen run:newCitizen.dir:speed];
 }
 
 -(void) resetCitizenGenerateFlag:(ccTime) dt

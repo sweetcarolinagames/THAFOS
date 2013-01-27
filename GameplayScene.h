@@ -19,7 +19,7 @@
     @private
     GameplayBackgroundLayer  *_bgLayer;
     GameplaySpriteLayer      *_spriteLayer;
-
+    ccTime _timeElapsed;
     
 }
 
@@ -28,5 +28,6 @@
 
 @property (nonatomic, readonly) GameplayBackgroundLayer *bgLayer;
 @property (nonatomic, readonly) GameplaySpriteLayer *spriteLayer;
+@property (nonatomic, readonly) ccTime timeElapsed;
 
 @end

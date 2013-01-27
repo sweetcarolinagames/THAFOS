@@ -11,20 +11,24 @@
 
 #import <Foundation/Foundation.h>
 #import "GameplayBackgroundLayer.h"
+#import "GameplayHUDLayer.h"
 #import "GameplaySpriteLayer.h"
-
 #import "cocos2d.h"
 
 @interface GameplayScene : CCScene 
 {    
     @private
-    GameplayBackgroundLayer* _bgLayer;
-    GameplaySpriteLayer *_spriteLayer;
+    GameplayBackgroundLayer  *_bgLayer;
+    GameplayHUDLayer         *_hudLayer;
+    GameplaySpriteLayer      *_spriteLayer;
+
+    
 }
 
 +(GameplayScene*) scene;
 
 @property (nonatomic, readonly) GameplayBackgroundLayer *bgLayer;
+@property (nonatomic, readonly) GameplayHUDLayer *hudLayer;
 @property (nonatomic, readonly) GameplaySpriteLayer *spriteLayer;
 
 @end

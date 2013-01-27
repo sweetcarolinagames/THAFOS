@@ -26,6 +26,7 @@
 }
 
 +(GameplayScene*) scene;
+-(void) loadSpriteSheets;
 
 @property (nonatomic, readonly) GameplayBackgroundLayer *bgLayer;
 @property (nonatomic, readonly) GameplayHUDLayer *hudLayer;

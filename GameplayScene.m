@@ -12,8 +12,6 @@
 
 @interface GameplayScene (private)
 
--(void) loadSpriteSheet;
-
 @end
 
 
@@ -33,6 +31,9 @@
 {
     if((self = [super init])) 
     {
+        // cache sprites
+        [self loadSpriteSheets];
+        
         // Background Layer
         _bgLayer   = [GameplayBackgroundLayer node]; //auto-release object
         [self addChild:_bgLayer z:BACKGROUND_LAYER_LEVEL];        
@@ -44,7 +45,7 @@
         // Sprite Layer
         _spriteLayer = [GameplaySpriteLayer node]; //auto-release object
         [self addChild:_spriteLayer z:SPRITE_LAYER_LEVEL];
-        
+                
         //Schedule the game loop
         [self scheduleUpdate];
     }

@@ -17,8 +17,16 @@
 #define MAX_BATTERY_LIFE 100.0
 #define BATTERY_STAGES 3
 #define BATTERY_STAGE_DELTA (MAX_BATTERY_LIFE / BATTERY_STAGES)
+#define BAD_HEART_PENALTY 20.0
 
 //Laser Information
 #define LASER_TAG 777
+#define LASER_BATTERY_PENALTY 5.0
+
+// Citizen Generation Constants
+#define EASY_DELAY 5.0
+#define MED_DELAY 4.0
+#define HARD_DELAY 3.0
+#define INSANE_DELAY 2.0
 
 #endif

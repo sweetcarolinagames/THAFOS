@@ -18,17 +18,20 @@
     Battery *_batteryMeter;
     Player  *_player;
     NSMutableArray *_citizens;
+    NSMutableArray *_laserBolts;
     NSMutableSet *_keysPressed;
+    CGFloat _citizenGenerateDelay;
     
     BOOL _canShoot;
+    BOOL _canGenerateCitizen;
 }
 
 @property (nonatomic,readwrite,assign) Battery *battery;
 @property (nonatomic,readwrite,retain) Player  *player;
 @property (nonatomic,readwrite,retain) NSMutableArray *citizens;
+@property (nonatomic,readwrite,retain) NSMutableArray *laserBolts;
 @property (nonatomic,readonly) BOOL canShoot;
-
--(void)initKeysPressed;
--(void)addCitizen;
+@property (nonatomic,readonly) BOOL canGenerateCitizen;
+@property (nonatomic,readwrite) CGFloat citizenGenerateDelay;
 
 @end

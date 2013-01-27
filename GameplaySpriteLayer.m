@@ -10,10 +10,18 @@
 #import "LaserBolt.h"
 #import "TrueHeart.h"
 #import "SimpleAudioEngine.h"
+#import "Constants.h"
+#import "Collidable.h"
 
 @interface GameplaySpriteLayer (private)
 
 -(void) coolDownLaser:(ccTime) dt;
+-(void)resetCitizenGenerateFlag:(ccTime) dt;
+-(void)addCitizen;
+-(void)initKeysPressed;
+-(void)checkCollisions;
+
+
 
 @end
 
@@ -22,8 +30,11 @@
 
 @synthesize player = _player;
 @synthesize citizens = _citizens;
+@synthesize laserBolts = _laserBolts;
 @synthesize canShoot = _canShoot;
+@synthesize canGenerateCitizen = _canGenerateCitizen;
 @synthesize battery  = _battery;
+@synthesize citizenGenerateDelay = _citizenGenerateDelay;
 
 - (id)init 
 {
@@ -36,17 +47,21 @@
         //add the battery
         _battery = [[Battery alloc] init];
         [self addChild:_battery];
-//        _citizen1 = [Citizen initWithSpriteFrameName:CITIZEN_FEMALE :CITIZEN_RIGHT];
-//        [self addChild:_citizen1];
-//        [_citizen1 run];
+
+        // init collider arrays
+        _citizens = [[NSMutableArray alloc] init];
+        _laserBolts = [[NSMutableArray alloc] init];
         
         //setup input
         self.isKeyboardEnabled = YES;
         [self initKeysPressed];
 
+        // difficulty settings
+        self.citizenGenerateDelay = EASY_DELAY;
         
         //enable weaponry
         _canShoot = YES;
+        _canGenerateCitizen = YES;
         
         
         //begin bgmusic and ufo sounds!        
@@ -65,6 +80,25 @@
 
 -(void) update:(ccTime) dt
 {
+    
+    if([_laserBolts count] > 0)
+    {
+        for (LaserBolt *lzr in _laserBolts) {
+            NSLog(@"Laser is at: (%f,%f)",lzr.boundingBox.origin.x, lzr.boundingBox.origin.y);
+        }
+
+    }
+    
+    
+    if ([self canGenerateCitizen]) 
+    {
+        [self addCitizen];
+    
+    }    
+    
+    //CHECK COLLLLIIISSSSSIONS!!!
+    [self checkCollisions];
+    
     //handle keyboard input
     if ([_keysPressed count] != 0) 
     {
@@ -100,8 +134,10 @@
                          = [LaserBolt generate:_player.position               
                                               :_player.contentSize.height/2];   
                         
-                        //TODO: must add to collideables here
                         [self addChild:shot];
+                        [_laserBolts addObject:shot];
+                        // shot penalty
+                        [_battery setBatteryLife:[_battery getBatteryLife] - LASER_BATTERY_PENALTY];
                         
                         //Disable laser and begin cooldown
                         _canShoot = NO;
@@ -111,20 +147,12 @@
                         
                         //Play sound!
                         [[SimpleAudioEngine sharedEngine] playEffect:@"laser.mp3"];
-                        
 
-                        
+                    }                    
+                    
+                }                    
+                    break;
 
-                    }
-                    
-                    
-                }
-                    
-                    break;
-                    
-                case 'g':
-                    [self addCitizen];
-                    break;
                 default:
                     break;
             }
@@ -133,6 +161,12 @@
     
 }
 
+-(void)draw
+{
+    for (LaserBolt *lzr in _laserBolts ) {
+//        [lzr drawBoundingBox:1.0f: 16: ccc4(255, 0, 0, 255)];
+    }
+}
 
 
 -(void) dealloc
@@ -141,9 +175,13 @@
     
     [_keysPressed release];
     [_battery release];
+    [_citizens release];
+    [_laserBolts release];
     
     _keysPressed = nil;
     _battery = nil;
+    _citizens = nil;
+    _laserBolts = nil;
 }
 
 
@@ -151,16 +189,89 @@
 -(void)coolDownLaser:(ccTime) dt
 {
     _canShoot = YES;
-    
-    //TODO:  THIS IS ONLY A TEST - PLZ DELETE WHENEVER DONE
-    CCSprite *heart = [TrueHeart generate:_player.position];
-    
-    //TODO: must add to collideables here
-    [self addChild:heart];
-
-    
 }
 
+-(void)checkCollisions
+{
+    NSMutableArray *laserBoltsToRelease = [[NSMutableArray alloc] init];
+    NSMutableArray *citizenToRelease = [[NSMutableArray alloc] init];
+    
+    // iterate
+    for (LaserBolt *laserBolt in self.laserBolts) 
+    {
+        for (Citizen *citizen  in self.citizens) 
+        {
+            if([laserBolt collide:citizen] > NO_COLLISION)
+            {
+                [laserBoltsToRelease addObject:laserBolt];
+                [citizenToRelease addObject:citizen];
+                
+                if(citizen.goodHeart)
+                {
+                    // "heart get"
+                    CCSprite *heart = [TrueHeart generate:citizen.position];
+                    [self addChild:heart];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"phaserUp6.mp3"];
+                }
+                else
+                {
+                    // player hit bad heart
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"fakeheartbeat.mp3"];
+                    [_battery setBatteryLife:([_battery getBatteryLife] - BAD_HEART_PENALTY)];
+                }
+            }
+        }
+    }
+    
+    for(LaserBolt *laserBolt in laserBoltsToRelease)
+    {
+        [self.laserBolts removeObject:laserBolt];
+        [self removeChild:laserBolt cleanup:YES];
+    }
+    
+    for(Citizen *citizen in citizenToRelease)
+    {
+        [self.citizens removeObject:citizen];
+        [self removeChild:citizen cleanup:YES];
+    }
+    
+    // garbage collection
+    [laserBoltsToRelease release];
+    [citizenToRelease release];
+    
+    laserBoltsToRelease = nil;
+    citizenToRelease = nil;
+}
+
+
+#pragma mark Citizen Auto-Gen Methods
+
+-(void)addCitizen
+{
+    // random male/female, left/right direction
+    Citizen *newCitizen = [[Citizen alloc] init];
+    newCitizen.position = ccp(rand()%600 + 50, 95);
+    newCitizen.goodHeart = ( rand()%2 ) ? YES : NO;
+    [newCitizen run];
+    // add to sprite layer
+    [self addChild:newCitizen];
+    // add to list of colliders
+    [_citizens addObject:newCitizen];
+    
+    //Play sound!
+    if(newCitizen.goodHeart)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"heartbeat.mp3"];
+    
+    _canGenerateCitizen = NO;
+    [self performSelector:@selector(resetCitizenGenerateFlag:) 
+               withObject:nil 
+               afterDelay:self.citizenGenerateDelay];
+}
+
+-(void)resetCitizenGenerateFlag:(ccTime) dt
+{
+    _canGenerateCitizen = YES;
+}
 
 
 #pragma mark Key Delegate Methods
@@ -187,7 +298,6 @@
         case 's':
         case 'd':
         case ' ':
-        case 'g':
             [_keysPressed addObject:keyHit];
             break;
             
@@ -213,7 +323,6 @@
         case 's':
         case 'd':
         case ' ':
-        case 'g':
             [_keysPressed removeObject:keyReleased];
             break;
             
@@ -222,18 +331,6 @@
     }
     
     return 1;
-}
-
--(void)addCitizen
-{
-    // random male/female, left/right direction
-    Citizen *newCitizen = [Citizen initWithSpriteFrameName:rand()%2 :rand()%2];
-    newCitizen.position = ccp(rand()%600 + 50, 95);
-    [newCitizen run];
-    // add to sprite layer
-    [self addChild:newCitizen];
-    // add to list of colliders
-    [_citizens addObject:newCitizen];
 }
 
 @end

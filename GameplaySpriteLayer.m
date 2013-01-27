@@ -16,12 +16,11 @@
 @interface GameplaySpriteLayer (private)
 
 -(void) coolDownLaser:(ccTime) dt;
--(void)resetCitizenGenerateFlag:(ccTime) dt;
--(void)addCitizen;
--(void)initKeysPressed;
--(void)checkCollisions;
-
-
+-(void) resetCitizenGenerateFlag:(ccTime) dt;
+-(void) addCitizen;
+-(void) cleanupOffScreenCitizens;
+-(void) initKeysPressed;
+-(void) checkCollisions;
 
 @end
 
@@ -35,6 +34,7 @@
 @synthesize canGenerateCitizen = _canGenerateCitizen;
 @synthesize battery  = _battery;
 @synthesize citizenGenerateDelay = _citizenGenerateDelay;
+@synthesize numberOfHeartsCollected = _numberOfHeartsCollected;
 
 - (id)init 
 {
@@ -102,6 +102,7 @@
     
     //check collision
     [self checkCollisions];
+    [self cleanupOffScreenCitizens];
     
     //increase difficulty if player is getting good
     if (self.numberOfHeartsCollected < 10) 
@@ -239,8 +240,6 @@
                [citizen runAction:[CCSequence actions:citizenFadeOutAction, removeCitizenFromLayerAction, nil]];
                 
                 [laserBoltsToRelease addObject:laserBolt];
-//                [citizenToRelease addObject:citizen];
-
                 
                 if(citizen.goodHeart)
                 {
@@ -268,13 +267,7 @@
         [_laserBolts removeObject:laserBolt];
         [self removeChild:laserBolt cleanup:YES];
     }
-    
-//    for(Citizen *citizen in citizenToRelease)
-//    {
-//        [self.citizens removeObject:citizen];
-//        [self removeChild:citizen cleanup:YES];
-//    }
-    
+        
     // garbage collection
     [laserBoltsToRelease release];
     [citizenToRelease release];
@@ -286,7 +279,7 @@
 
 #pragma mark Citizen Auto-Gen Methods
 
--(void)addCitizen
+-(void) addCitizen
 {
     // random male/female, left/right direction
     Citizen *newCitizen = [[Citizen alloc] init];
@@ -308,14 +301,37 @@
                afterDelay:self.citizenGenerateDelay];
 }
 
--(void)resetCitizenGenerateFlag:(ccTime) dt
+-(void) resetCitizenGenerateFlag:(ccTime) dt
 {
     _canGenerateCitizen = YES;
+}
+
+-(void) cleanupOffScreenCitizens
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    NSMutableArray *citizensToRelease = [[NSMutableArray alloc] init];
+    
+    for (Citizen *citizen in _citizens) 
+    {
+        if (citizen.position.x < -citizen.contentSize.width || citizen.position.x > (winSize.width+citizen.contentSize.width)) 
+        {
+            // set citizen to be released
+            [citizensToRelease addObject:citizen];
+        }
+    }
+    
+    // release citizens
+    for(Citizen *citizen in citizensToRelease)
+    {
+        [self.citizens removeObject:citizen];
+        [self removeChild:citizen cleanup:YES];
+    }
+    
 }
                                                
 
 #pragma mark Key Delegate Methods
--(void)initKeysPressed
+-(void) initKeysPressed
 {
     if (!_keysPressed) 
     {

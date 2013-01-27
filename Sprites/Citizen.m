@@ -68,6 +68,7 @@
     
     CCJumpBy *jumpAction = [[CCJumpBy alloc] initWithDuration:0.5 position:ccp(dirMod*20,0) height:30 jumps:1];
     CCRepeatForever *jumpForeverAction = [[CCRepeatForever alloc] initWithAction:jumpAction];
+    
     [self runAction:jumpForeverAction];
 }
 

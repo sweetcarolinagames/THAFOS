@@ -21,7 +21,7 @@
 @implementation GameplaySpriteLayer
 
 @synthesize player = _player;
-@synthesize citizen1 = _citizen1;
+@synthesize citizens = _citizens;
 @synthesize canShoot = _canShoot;
 @synthesize battery  = _battery;
 
@@ -36,7 +36,9 @@
         //add the battery
         _battery = [[Battery alloc] init];
         [self addChild:_battery];
-        
+//        _citizen1 = [Citizen initWithSpriteFrameName:CITIZEN_FEMALE :CITIZEN_RIGHT];
+//        [self addChild:_citizen1];
+//        [_citizen1 run];
         
         //setup input
         self.isKeyboardEnabled = YES;
@@ -120,6 +122,9 @@
                     
                     break;
                     
+                case 'g':
+                    [self addCitizen];
+                    break;
                 default:
                     break;
             }
@@ -182,6 +187,7 @@
         case 's':
         case 'd':
         case ' ':
+        case 'g':
             [_keysPressed addObject:keyHit];
             break;
             
@@ -207,6 +213,7 @@
         case 's':
         case 'd':
         case ' ':
+        case 'g':
             [_keysPressed removeObject:keyReleased];
             break;
             
@@ -215,6 +222,18 @@
     }
     
     return 1;
+}
+
+-(void)addCitizen
+{
+    // random male/female, left/right direction
+    Citizen *newCitizen = [Citizen initWithSpriteFrameName:rand()%2 :rand()%2];
+    newCitizen.position = ccp(rand()%600 + 50, 95);
+    [newCitizen run];
+    // add to sprite layer
+    [self addChild:newCitizen];
+    // add to list of colliders
+    [_citizens addObject:newCitizen];
 }
 
 @end

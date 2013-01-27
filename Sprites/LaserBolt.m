@@ -65,10 +65,10 @@
         playerMaxX = CGRectGetMaxX([self boundingBox]);
         
         // get boundaries for collidable
-        collidableMinY = CGRectGetMinY([collidableSprite boundingBox]);
-        collidableMaxY = CGRectGetMaxY([collidableSprite boundingBox]);
-        collidableMinX = CGRectGetMinX([collidableSprite boundingBox]);
-        collidableMaxX = CGRectGetMaxX([collidableSprite boundingBox]);
+        collidableMinY = CGRectGetMinY([collidableSprite boundingBox]) + 40;
+        collidableMaxY = CGRectGetMaxY([collidableSprite boundingBox]) - 150;
+        collidableMinX = CGRectGetMinX([collidableSprite boundingBox]) + 150;
+        collidableMaxX = CGRectGetMaxX([collidableSprite boundingBox]) - 150;
         
         if(fabsf(playerMinY - collidableMaxY) < collisionThreshold)
         {

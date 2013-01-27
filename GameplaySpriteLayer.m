@@ -126,9 +126,6 @@
     }
     
     
-    
-    
-    
     //handle keyboard input
     if ([_keysPressed count] != 0) 
     {
@@ -301,8 +298,10 @@
                withObject:nil 
                afterDelay:self.citizenGenerateDelay];
     
+    // adjust speed based on difficulty
+    CGFloat speed = 0.1f * self.citizenGenerateDelay;
     // make citizen move
-    [newCitizen run:newCitizen.dir];
+    [newCitizen run:newCitizen.dir:speed];
 }
 
 -(void) resetCitizenGenerateFlag:(ccTime) dt

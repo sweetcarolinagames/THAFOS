@@ -50,7 +50,7 @@
     return self;
 }
 
--(void)run:(CitizenDirection)d
+-(void)run:(CitizenDirection)d:(CGFloat)speed
 {   
     self.dir = d;
     int dirMod = (_dir == CITIZEN_RIGHT ? 1 : -1);
@@ -67,7 +67,7 @@
             break;
     }
     
-    CCJumpBy *jumpAction = [[CCJumpBy alloc] initWithDuration:0.5 position:ccp(dirMod*20,0) height:30 jumps:1];
+    CCJumpBy *jumpAction = [[CCJumpBy alloc] initWithDuration:speed position:ccp(dirMod*20,0) height:30 jumps:1];
     CCRepeatForever *jumpForeverAction = [[CCRepeatForever alloc] initWithAction:jumpAction];
     
     [self runAction:jumpForeverAction];

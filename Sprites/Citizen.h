@@ -37,6 +37,6 @@ typedef enum
 @property (nonatomic, readwrite) BOOL goodHeart;
 
 +(Citizen*)initWithSpriteFrameName:(CitizenGender)g:(CitizenDirection)d;
--(void)run:(CitizenDirection)d;
+-(void)run:(CitizenDirection)d:(CGFloat)speed;
 
 @end

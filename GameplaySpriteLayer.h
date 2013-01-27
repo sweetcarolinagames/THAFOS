@@ -15,7 +15,7 @@
 @interface GameplaySpriteLayer : CCLayer 
 {
     @private
-    Battery *_batteryMeter;
+    Battery *_battery;
     Player  *_player;
     NSMutableArray *_citizens;
     NSMutableArray *_laserBolts;
@@ -24,6 +24,7 @@
     
     BOOL _canShoot;
     BOOL _canGenerateCitizen;
+    int  _numberOfHeartsCollected;
 }
 
 @property (nonatomic,readwrite,assign) Battery *battery;
@@ -33,5 +34,6 @@
 @property (nonatomic,readonly) BOOL canShoot;
 @property (nonatomic,readonly) BOOL canGenerateCitizen;
 @property (nonatomic,readwrite) CGFloat citizenGenerateDelay;
+@property (nonatomic, readwrite) int numberOfHeartsCollected;
 
 @end

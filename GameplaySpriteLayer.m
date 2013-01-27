@@ -63,6 +63,9 @@
         _canShoot = YES;
         _canGenerateCitizen = YES;
         
+        //game logic data
+        _numberOfHeartsCollected = 0;
+        
         
         //begin bgmusic and ufo sounds!        
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.15f];
@@ -80,19 +83,50 @@
 
 -(void) update:(ccTime) dt
 {
-    
     //DEBUG:
     NSLog(@"Number of active projectiles: %lu", [_laserBolts count]);
     NSLog(@"Number of active citizens: %lu", [_citizens count]);
     NSLog(@"Number of active children: %lu", [[self children] count]);
+    
+    //check if we still have battery!
+    if ([_battery getBatteryLife] < 0.1) {
+        //if we're less than 0.1, we are dead.
+        
+    }
+ 
     
     if ([self canGenerateCitizen]) 
     {
         [self addCitizen];
     }    
     
-    //CHECK COLLLLIIISSSSSIONS!!!
+    //check collision
     [self checkCollisions];
+    
+    //increase difficulty if player is getting good
+    if (self.numberOfHeartsCollected < 10) 
+    {
+        self.citizenGenerateDelay = EASY_DELAY;
+    }
+    
+    else if (self.numberOfHeartsCollected >= 10 && self.numberOfHeartsCollected < 20) 
+    {
+        self.citizenGenerateDelay = MED_DELAY;
+    }
+    
+    else if(self.numberOfHeartsCollected >= 20 && self.numberOfHeartsCollected < 30)
+    {
+        self.citizenGenerateDelay = HARD_DELAY;
+    }
+    
+    else
+    {
+        self.citizenGenerateDelay = INSANE_DELAY;
+    }
+    
+    
+    
+    
     
     //handle keyboard input
     if ([_keysPressed count] != 0) 
@@ -206,6 +240,8 @@
                     CCSprite *heart = [TrueHeart generate:citizen.position];
                     [self addChild:heart];
                     [[SimpleAudioEngine sharedEngine] playEffect:@"phaserUp6.mp3"];
+                    _numberOfHeartsCollected++;
+
                     // add battery life
                     [_battery setBatteryLife:[_battery getBatteryLife] + MAX_BATTERY_LIFE*0.20f];
                 }

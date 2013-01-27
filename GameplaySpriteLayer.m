@@ -8,6 +8,7 @@
 
 #import "GameplaySpriteLayer.h"
 #import "LaserBolt.h"
+#import "TrueHeart.h"
 #import "SimpleAudioEngine.h"
 
 @interface GameplaySpriteLayer (private)
@@ -144,6 +145,14 @@
 -(void)coolDownLaser:(ccTime) dt
 {
     _canShoot = YES;
+    
+    //TODO:  THIS IS ONLY A TEST - PLZ DELETE WHENEVER DONE
+    CCSprite *heart = [TrueHeart generate:_player.position];
+    
+    //TODO: must add to collideables here
+    [self addChild:heart];
+
+    
 }
 
 

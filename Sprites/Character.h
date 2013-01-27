@@ -20,7 +20,11 @@ typedef enum
     FALL = (1 << 1),
     HIT = (1 << 2),
     THROW = (1 << 3),
-    IDLE = (1 << 4)
+    IDLE = (1 << 4),
+    // spaceship
+    MOVE_IDLE = (1 << 6), 
+    MOVE_LEFT = (1 << 7),
+    MOVE_RIGHT = (1 << 8)
 }MoveState;
 
 @interface Character : CCSprite { // ABSTRACT

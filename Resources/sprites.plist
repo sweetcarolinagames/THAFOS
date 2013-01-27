@@ -4,10 +4,114 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>battery1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{186,2},{92,184}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{4,7},{92,184}}</string>
+                <key>sourceSize</key>
+                <string>{100,200}</string>
+            </dict>
+            <key>battery2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,374},{94,182}}</string>
+                <key>offset</key>
+                <string>{-2,1}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{1,8},{94,182}}</string>
+                <key>sourceSize</key>
+                <string>{100,200}</string>
+            </dict>
+            <key>battery3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{186,374},{92,182}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{4,8},{92,182}}</string>
+                <key>sourceSize</key>
+                <string>{100,200}</string>
+            </dict>
+            <key>battery4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{96,190},{92,182}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,8},{92,182}}</string>
+                <key>sourceSize</key>
+                <string>{100,200}</string>
+            </dict>
+            <key>battery5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{186,96},{92,182}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{4,10},{92,182}}</string>
+                <key>sourceSize</key>
+                <string>{100,200}</string>
+            </dict>
+            <key>battery6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{372,2},{92,182}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,10},{92,182}}</string>
+                <key>sourceSize</key>
+                <string>{100,200}</string>
+            </dict>
+            <key>battery7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,188},{92,184}}</string>
+                <key>offset</key>
+                <string>{1,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,10},{92,184}}</string>
+                <key>sourceSize</key>
+                <string>{100,200}</string>
+            </dict>
+            <key>battery8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{92,184}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,5},{92,184}}</string>
+                <key>sourceSize</key>
+                <string>{100,196}</string>
+            </dict>
             <key>ufo.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{54,31}}</string>
+                <string>{{2,470},{54,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -25,9 +129,9 @@
             <key>realTextureFileName</key>
             <string>sprites.png</string>
             <key>size</key>
-            <string>{64,64}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:045de1dbf75733ad519b244a8a5bb07c$</string>
+            <string>$TexturePacker:SmartUpdate:eda23189ac5a616d3d98c810b1ec4119$</string>
             <key>textureFileName</key>
             <string>sprites.png</string>
         </dict>

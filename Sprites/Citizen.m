@@ -40,27 +40,28 @@
         
         NSLog(@"Sprite text rect for citizen: (%f, %f)", self.textureRect.size.width, self.textureRect.size.height);
         NSLog(@"Bounding box for citizen: (%f, %f)", self.boundingBox.size.width, self.boundingBox.size.height);
-        self.position = ccp(500, 95);
-        _velocity = ccp(-25,0);
-        _runAction = [[RunAction alloc] initWithDurationAndPosition:1 position:_velocity];
-        _hitAction = [[HitAction alloc] initWithDuration:3.0f];
+//        self.position = ccp(500, 95);
+//        _velocity = ccp(-25,0);
+//        _runAction = [[RunAction alloc] initWithDurationAndPosition:1 position:_velocity];
+//        _hitAction = [[HitAction alloc] initWithDuration:3.0f];
         _goodHeart = NO;
     }
 
     return self;
 }
 
--(void)run
+-(void)run:(CitizenDirection)d
 {   
+    self.dir = d;
     int dirMod = (_dir == CITIZEN_RIGHT ? 1 : -1);
     
     switch(_gender)
     {
         case CITIZEN_MALE:
-            (_dir == CITIZEN_RIGHT) ? [self setScaleX:-1.0f] : nil;
+            (self.dir == CITIZEN_RIGHT) ? [self setScaleX:-1.0f] : nil;
             break;
         case CITIZEN_FEMALE:
-            (_dir == CITIZEN_LEFT) ? [self setScaleX:-1.0f] : nil;
+            (self.dir == CITIZEN_LEFT) ? [self setScaleX:-1.0f] : nil;
             break;
         default:
             break;

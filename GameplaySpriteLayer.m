@@ -281,11 +281,12 @@
 
 -(void) addCitizen
 {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
     // random male/female, left/right direction
     Citizen *newCitizen = [[Citizen alloc] init];
-    newCitizen.position = ccp(rand()%600 + 50, 95);
     newCitizen.goodHeart = ( rand()%2 ) ? YES : NO;
-    [newCitizen run];
+
+    newCitizen.position = (newCitizen.dir == CITIZEN_LEFT) ? ccp(winSize.width + newCitizen.contentSize.width, 95) : ccp(0 - newCitizen.contentSize.width, 95);
     // add to sprite layer
     [self addChild:newCitizen];
     // add to list of colliders
@@ -299,6 +300,9 @@
     [self performSelector:@selector(resetCitizenGenerateFlag:) 
                withObject:nil 
                afterDelay:self.citizenGenerateDelay];
+    
+    // make citizen move
+    [newCitizen run:newCitizen.dir];
 }
 
 -(void) resetCitizenGenerateFlag:(ccTime) dt

@@ -25,9 +25,10 @@
 
 @property (nonatomic,readwrite,assign) Battery *battery;
 @property (nonatomic,readwrite,retain) Player  *player;
-@property (nonatomic,readwrite,retain) Citizen *citizen1;
+@property (nonatomic,readwrite,retain) NSMutableArray *citizens;
 @property (nonatomic,readonly) BOOL canShoot;
 
 -(void)initKeysPressed;
+-(void)addCitizen;
 
 @end

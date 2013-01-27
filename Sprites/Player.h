@@ -10,24 +10,24 @@
 #import "cocos2d.h"
 #import "Collidable.h"
 #import "PlayerRunAction.h"
-#import "PlayerDashAction.h"
+#import "Character.h"
 
 #define MAX_HITS 3
 
-typedef enum {
-    NONE = 0,
-    RUN = (1 << 0),
-    JUMP = (1 << 1),
-    DOUBLE_JUMP = (1 << 2),
-    DASH = (1 << 3),
-    SLIDE = (1 << 4),
-    FALL = (1 << 5),
-    
-    // spaceship
-    MOVE_IDLE = (1 << 6), 
-    MOVE_LEFT = (1 << 7),
-    MOVE_RIGHT = (1 << 8)
-}MoveState;
+//typedef enum {
+//    NONE = 0,
+//    RUN = (1 << 0),
+//    JUMP = (1 << 1),
+//    DOUBLE_JUMP = (1 << 2),
+//    DASH = (1 << 3),
+//    SLIDE = (1 << 4),
+//    FALL = (1 << 5),
+//    
+//    // spaceship
+//    MOVE_IDLE = (1 << 6), 
+//    MOVE_LEFT = (1 << 7),
+//    MOVE_RIGHT = (1 << 8)
+//}MoveState;
 
 @interface Player : CCSprite <Collidable> {
     @private

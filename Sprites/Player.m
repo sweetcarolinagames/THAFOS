@@ -37,7 +37,7 @@ static Player *singletonPlayer;
     {
         initialized = YES;
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];    
-        singletonPlayer = [[Player alloc] initWithSpriteFrameName:@"ufo.png"];
+        singletonPlayer = [[Player alloc] initWithSpriteFrameName:@"Alien_ggj13.png"];
     }
 }
 
@@ -54,7 +54,7 @@ static Player *singletonPlayer;
         self.maxStamina      = 100;
         self.stamina         = self.maxStamina;
         self.velocity = ccp(100.0, 0.0);
-        self.position = ccp(winSize.width/4, 100);
+        self.position = ccp(winSize.width/4, 500);
         _hits  = 0;
         _alive = YES;
         _collisionPaddingX = 0;
@@ -173,61 +173,6 @@ static Player *singletonPlayer;
     
 }
 
-/*
- * Makes player dash in direction of target
- * @param target position for player to dash to
- * @return pointer to dash action executed
- */
--(CCAction *)dash:(CGPoint)target
-{    
-    return [self dash:self.position :target];
-}
-
--(CCAction *)dash:(CGPoint)start:(CGPoint)end
-{
-    PlayerDashAction *dashAction = nil;
-    CCCallFunc *endDashAction = nil;
-    CCSequence *dashActionSequence = nil;
-    
-    if(self.stamina >= dashStaminaValue)
-    {
-    
-        [self clearMoveState];
-        [self addMoveState:DASH];
-//        [self resetFallAction];
-        
-        [[SimpleAudioEngine sharedEngine]playEffect:@"dash.mp3"];
-        CGFloat dashX = 0; // 0 since we don't want to move horizontally
-        CGFloat dashY = end.y - start.y;
-        const CGPoint dashDelta = ccp(dashX, dashY);
-        const ccTime dashTime = 0.25f;
-//        const CGFloat normVelFactor = 1.0f/dashTime;
-//        const CGPoint newVel = ccpMult(dashDelta, normVelFactor);
-        
-        dashAction = [[PlayerDashAction action:dashTime position:dashDelta distance:self.maxDashDistance] retain];
-        endDashAction = [[CCCallFunc actionWithTarget:self selector:@selector(endDash)] retain];
-        dashActionSequence = [[CCSequence actions:dashAction, endDashAction, nil] retain];
-        [self runAction:dashActionSequence];
-//        [self setVelocity:ccpMult(newVel, 0.25f)]; // maintain 1/4 of momentum
-        [self setVelocity:ccp(0,0)]; // set to zero so falling won't change position either
-        
-        self.stamina -= dashStaminaValue;
-//        [self normalizeStamina];
-    }
-    else 
-    {
-        [self flash:ccc3(255, 255, 0) :0.25];
-    }
-    
-    return dashActionSequence;
-}
-
-// Ends dashing state
--(void)endDash
-{
-    [self removeMoveState:DASH];
-}
-
 #pragma mark Collideable Protocol Methods
 /*
  * Returns type of collision with collider
@@ -304,7 +249,7 @@ static Player *singletonPlayer;
     va_list args;
     va_start(args, firstState);
     
-    for(MoveState currState = firstState; currState > NONE; currState = va_arg(args, MoveState))
+    for(MoveState currState = firstState; currState > MOVESTATE_NONE; currState = va_arg(args, MoveState))
     {
         if(self.moveState & currState)
             return YES;
@@ -326,7 +271,7 @@ static Player *singletonPlayer;
 
 -(void)clearMoveState;
 {
-    [self setMoveState:NONE];
+    [self setMoveState:MOVESTATE_NONE];
 }
 
 // reset runAction so it can be created & run again

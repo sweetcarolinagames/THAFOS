@@ -253,7 +253,7 @@
                 {
                     // player hit bad heart
                     [[SimpleAudioEngine sharedEngine] playEffect:@"fakeheartbeat.mp3"];
-                    [_battery setBatteryLife:([_battery getBatteryLife] - BAD_HEART_PENALTY)];
+                    [_battery setBatteryLife:([_battery getBatteryLife] - BAD_HEART_PENALTY*(EASY_DELAY/self.citizenGenerateDelay))];
                 }
             }
         }

@@ -69,18 +69,18 @@ static Player *singletonPlayer;
                                    self.position.y, 
                                    spriteTex.contentSize.width, 
                                    spriteTex.contentSize.height)];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];    
+//        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];    
     }
     
     return self;
 }
 
 // todo: rename
--(void)initAnimation
-{
-    self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
-    [self.spriteSheet addChild:self]; // clarification: spriteSheet obj contained in Player obj, but Player sprite is child sprite of spriteSheet 
-}
+//-(void)initAnimation
+//{
+//    self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
+//    [self.spriteSheet addChild:self]; // clarification: spriteSheet obj contained in Player obj, but Player sprite is child sprite of spriteSheet 
+//}
 
 // draw player bounding box & other player-related graphics
 -(void)drawPlayer

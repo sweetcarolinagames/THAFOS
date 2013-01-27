@@ -50,14 +50,14 @@
     CGFloat playerMinY, playerMaxY, playerMinX, playerMaxX; 
     CGFloat collidableMinY, collidableMaxY, collidableMinX, collidableMaxX;
     BOOL collide;
-    const int collisionThreshold = 0; //pixels
+    const int collisionThreshold = 10; //pixels
     
     // do we collide?
     collide = [self collideWithRect:[collidableSprite boundingBox]];
     
     if(collide)
     {
-        NSLog(@"collided!!!");
+//        NSLog(@"collided!!!");
         // get boundaries for player
         playerMinY = CGRectGetMinY([self boundingBox]);
         playerMaxY = CGRectGetMaxY([self boundingBox]);

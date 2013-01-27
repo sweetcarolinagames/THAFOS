@@ -7,11 +7,21 @@
 //
 
 #import "GameplaySpriteLayer.h"
+#import "LaserBolt.h"
+#import "SimpleAudioEngine.h"
+
+@interface GameplaySpriteLayer (private)
+
+-(void) coolDownLaser:(ccTime) dt;
+
+@end
+
 
 @implementation GameplaySpriteLayer
 
 @synthesize player = _player;
 @synthesize citizen1 = _citizen1;
+@synthesize canShoot = _canShoot;
 
 - (id)init 
 {
@@ -20,14 +30,11 @@
         _player = [Player getPlayer];
         [self addChild:_player];
         
-//        _citizen1 = [Citizen 
-        
         self.isKeyboardEnabled = YES;
         [self initKeysPressed];
         
+        _canShoot = YES;
         [self scheduleUpdate];
-        
-        
     }
     return self;
 }
@@ -58,6 +65,28 @@
                 case NSDownArrowFunctionKey:
                 case ' ':
                 case 's':
+                {
+                    if ([self canShoot]) 
+                    {
+                        CCSprite *shot 
+                         = [LaserBolt generate:_player.position               
+                                              :_player.contentSize.height/2];   
+                        
+                        //must add to collideables here
+                        
+                        [self addChild:shot];
+                        _canShoot = NO;
+                        [self performSelector:@selector(coolDownLaser:) 
+                                   withObject:nil 
+                                   afterDelay:1.0f];
+                        
+                        
+
+                    }
+                    
+                    
+                }
+                    
                     break;
                     
                 default:
@@ -78,6 +107,14 @@
     
     _keysPressed = nil;
 }
+
+
+#pragma mark Player Auxiliary Methods
+-(void)coolDownLaser:(ccTime) dt
+{
+    _canShoot = YES;
+}
+
 
 
 #pragma mark Key Delegate Methods
@@ -116,12 +153,7 @@
 
 
 -(BOOL) ccKeyUp:(NSEvent *)event
-{
-//    if (!_keysPressed) 
-//    {
-//        _keysPressed = [[NSMutableSet alloc] init];
-//    }
-    
+{    
     NSNumber *keyReleased 
         = [NSNumber numberWithUnsignedInt:[[event characters] characterAtIndex:0]];
     

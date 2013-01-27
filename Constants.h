@@ -19,4 +19,7 @@
 #define BATTERY_STAGES 4
 #define BATTERY_STAGE_DELTA (MAX_BATTERY_LIFE / BATTERY_STAGES)
 
+//Laser Information
+#define LASER_TAG 777
+
 #endif

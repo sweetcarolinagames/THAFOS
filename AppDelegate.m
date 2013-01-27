@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "TitleScene.h"
 #import "GameplayScene.h"
 
 @implementation ggj13AppDelegate
@@ -50,7 +51,7 @@
 	[window_ setAcceptsMouseMovedEvents:NO];
 	
 	
-	[director runWithScene:[GameplayScene scene]];
+	[director runWithScene:[TitleScene node]];
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed: (NSApplication *) theApplication

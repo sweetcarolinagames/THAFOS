@@ -8,6 +8,7 @@
 
 #import "GameOverScene.h"
 #import "GameplayScene.h"
+#import "TitleScene.h"
 #import "SimpleAudioEngine.h"
 
 @implementation GameOverLayer
@@ -38,6 +39,7 @@
 						 nil]];
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"die.wav"]; //explosion
+        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 		
 	}	
 	return self;
@@ -45,7 +47,7 @@
 
 - (void)gameOverDone {
     
-	[[CCDirector sharedDirector] replaceScene:[GameplayScene scene]];
+	[[CCDirector sharedDirector] replaceScene:[TitleScene node]];
     
 }
 

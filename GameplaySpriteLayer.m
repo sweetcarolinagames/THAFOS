@@ -130,9 +130,6 @@
     }
     
     
-    
-    
-    
     //handle keyboard input
     if ([_keysPressed count] != 0) 
     {

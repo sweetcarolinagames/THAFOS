@@ -8,6 +8,13 @@
 
 #import "LaserBolt.h"
 #import "Constants.h"
+#import "GameplaySpriteLayer.h"
+
+@interface LaserBolt (private)
+
+-(void)laserBoltMoveFinished:(id)sender;
+
+@end
 
 @implementation LaserBolt
 
@@ -25,21 +32,26 @@
     id actionMove = [CCMoveTo actionWithDuration:1.0 
                                         position:ccp(origin.x, -laser.contentSize.height/2)];
     
-    id actionMoveDone = [CCCallFunc actionWithTarget:laser selector:@selector(removeFromParentAndCleanup:)];
+    id actionMoveDone = [CCCallFunc actionWithTarget:laser selector:@selector(laserBoltMoveFinished:)];
     
     [laser runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
     
     NSLog(@"Sprite text rect for laser: (%f, %f)", laser.textureRect.size.width, laser.textureRect.size.height);
     NSLog(@"Bounding box for laser: (%f, %f)", laser.boundingBox.size.width, laser.boundingBox.size.height);
-
-    
     return laser;
 }
 
 
-+(CCSprite*) generate:(CGPoint) origin:(CGFloat) offsetVerticallyBy
++(LaserBolt*) generate:(CGPoint) origin:(CGFloat) offsetVerticallyBy
 {
     return [LaserBolt generate:ccp(origin.x, origin.y - offsetVerticallyBy)];
+}
+
+-(void)laserBoltMoveFinished:(id)sender 
+{
+    GameplaySpriteLayer *parentSpriteLayer = (GameplaySpriteLayer*) [self parent];
+    [[parentSpriteLayer laserBolts] removeObject:self]; //need to get myself out of my parent's laserBolts 
+    [self removeFromParentAndCleanup:YES];
 }
 
 

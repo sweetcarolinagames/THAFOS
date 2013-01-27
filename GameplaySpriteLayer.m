@@ -81,19 +81,14 @@
 -(void) update:(ccTime) dt
 {
     
-    if([_laserBolts count] > 0)
-    {
-        for (LaserBolt *lzr in _laserBolts) {
-//            NSLog(@"Laser is at: (%f,%f)",lzr.boundingBox.origin.x, lzr.boundingBox.origin.y);
-        }
-
-    }
-    
+    //DEBUG:
+    NSLog(@"Number of active projectiles: %lu", [_laserBolts count]);
+    NSLog(@"Number of active citizens: %lu", [_citizens count]);
+    NSLog(@"Number of active children: %lu", [[self children] count]);
     
     if ([self canGenerateCitizen]) 
     {
         [self addCitizen];
-    
     }    
     
     //CHECK COLLLLIIISSSSSIONS!!!
@@ -130,22 +125,20 @@
                 {
                     if ([self canShoot]) 
                     {
-                        CCSprite *shot 
-                         = [LaserBolt generate:_player.position               
-                                              :_player.contentSize.height/2];   
-                        
+                        LaserBolt *shot = [LaserBolt generate:_player.position :_player.contentSize.height/2];   
                         [self addChild:shot];
                         [_laserBolts addObject:shot];
+                        
                         // shot penalty
                         [_battery setBatteryLife:[_battery getBatteryLife] - LASER_BATTERY_PENALTY];
                         
-                        //Disable laser and begin cooldown
+                        // disable laser and begin cooldown
                         _canShoot = NO;
                         [self performSelector:@selector(coolDownLaser:) 
                                    withObject:nil 
                                    afterDelay:1.0f];
                         
-                        //Play sound!
+                        // play sound!
                         [[SimpleAudioEngine sharedEngine] playEffect:@"laser.mp3"];
 
                     }                    
@@ -157,15 +150,7 @@
                     break;
             }
         }
-    }
-    
-}
-
--(void)draw
-{
-    for (LaserBolt *lzr in _laserBolts ) {
-//        [lzr drawBoundingBox:1.0f: 16: ccc4(255, 0, 0, 255)];
-    }
+    }    
 }
 
 
@@ -236,13 +221,13 @@
     
     for(LaserBolt *laserBolt in laserBoltsToRelease)
     {
-        [self.laserBolts removeObject:laserBolt];
+        [_laserBolts removeObject:laserBolt];
         [self removeChild:laserBolt cleanup:YES];
     }
     
     for(Citizen *citizen in citizenToRelease)
     {
-        [self.citizens removeObject:citizen];
+        [_citizens removeObject:citizen];
         [self removeChild:citizen cleanup:YES];
     }
     

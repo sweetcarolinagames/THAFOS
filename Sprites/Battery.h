@@ -17,7 +17,7 @@
 }
 
 @property (nonatomic, readonly) CGFloat batteryDecay;
-@property (atomic, getter = getBatteryLife, setter = setBatteryLife:) CGFloat batteryLife;
+@property (getter = getBatteryLife, setter = setBatteryLife:) CGFloat batteryLife;
 
 
 @end

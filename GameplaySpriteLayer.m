@@ -205,6 +205,7 @@
             {
                 [laserBoltsToRelease addObject:laserBolt];
                 [citizenToRelease addObject:citizen];
+                [citizen runAction:[CCFadeOut actionWithDuration:0.25f]];
                 
                 if(citizen.goodHeart)
                 {
@@ -212,6 +213,8 @@
                     CCSprite *heart = [TrueHeart generate:citizen.position];
                     [self addChild:heart];
                     [[SimpleAudioEngine sharedEngine] playEffect:@"phaserUp6.mp3"];
+                    // add battery life
+                    [_battery setBatteryLife:[_battery getBatteryLife] + MAX_BATTERY_LIFE*0.20f];
                 }
                 else
                 {
@@ -232,7 +235,7 @@
     for(Citizen *citizen in citizenToRelease)
     {
         [self.citizens removeObject:citizen];
-        [self removeChild:citizen cleanup:YES];
+//        [self removeChild:citizen cleanup:YES];
     }
     
     // garbage collection

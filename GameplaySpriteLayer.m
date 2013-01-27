@@ -35,6 +35,14 @@
         
         _canShoot = YES;
         [self scheduleUpdate];
+        
+        //begin bgmusic and ufo sounds!        
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.5f];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme-dst-arcofdawn.mp3" loop:YES];
+
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"20473__dj-chronos__ufo.mp3" loop:YES];
+
+
     }
     return self;
 }
@@ -54,12 +62,16 @@
             {
                 case NSLeftArrowFunctionKey:
                 case 'a':
+                {
                     [_player move:MOVE_LEFT: 3.0f];
+                }
                     break;
                     
                 case NSRightArrowFunctionKey:
                 case 'd':
+                {
                     [_player move:MOVE_RIGHT :3.0f];
+                }
                     break;
                     
                 case NSDownArrowFunctionKey:
@@ -72,14 +84,19 @@
                          = [LaserBolt generate:_player.position               
                                               :_player.contentSize.height/2];   
                         
-                        //must add to collideables here
-                        
+                        //TODO: must add to collideables here
                         [self addChild:shot];
+                        
+                        //Disable laser and begin cooldown
                         _canShoot = NO;
                         [self performSelector:@selector(coolDownLaser:) 
                                    withObject:nil 
                                    afterDelay:1.0f];
                         
+                        //Play sound!
+                        [[SimpleAudioEngine sharedEngine] playEffect:@"laser.mp3"];
+                        
+
                         
 
                     }

@@ -60,7 +60,14 @@
                                         [self getChargeLevelIconName:batteryLife]];
         [self setDisplayFrame:frame];
     }
+    
     _batteryLife = batteryLife;
+    
+    if(_batteryLife > 100.0) 
+        _batteryLife = 100.0;
+    
+    if(_batteryLife < 0.0)
+        _batteryLife = 0.0;
 }
 
 

@@ -84,7 +84,7 @@
     if([_laserBolts count] > 0)
     {
         for (LaserBolt *lzr in _laserBolts) {
-            NSLog(@"Laser is at: (%f,%f)",lzr.boundingBox.origin.x, lzr.boundingBox.origin.y);
+//            NSLog(@"Laser is at: (%f,%f)",lzr.boundingBox.origin.x, lzr.boundingBox.origin.y);
         }
 
     }

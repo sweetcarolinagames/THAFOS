@@ -28,8 +28,8 @@
 
 @property (nonatomic,readwrite,assign) Battery *battery;
 @property (nonatomic,readwrite,retain) Player  *player;
-@property (nonatomic,readwrite,retain) NSMutableArray *citizens;
-@property (nonatomic,readwrite,retain) NSMutableArray *laserBolts;
+@property (nonatomic,readwrite,assign) NSMutableArray *citizens;
+@property (nonatomic,readwrite,assign) NSMutableArray *laserBolts;
 @property (nonatomic,readonly) BOOL canShoot;
 @property (nonatomic,readonly) BOOL canGenerateCitizen;
 @property (nonatomic,readwrite) CGFloat citizenGenerateDelay;

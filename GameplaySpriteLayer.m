@@ -222,11 +222,19 @@
         {
             if([laserBolt collide:citizen] > NO_COLLISION)
             {
-                id citizenFadeOutAction = [citizen runAction:[CCFadeOut actionWithDuration:0.25f]];
-                id removeCitizenFromLayerAction = [CCCallBlock actionWithBlock:^
-                                                   {
+                // citizen fadeout and release sequence
+                id citizenFadeOutAction = [CCFadeOut actionWithDuration:0.25f];
+                id removeCitizenFromLayerAction = [CCCallBlock actionWithBlock:
+                                                   ^{
                                                        // set citizen to be released
-                                                       [citizenToRelease addObject:citizen];
+                                                        [citizenToRelease addObject:citizen];
+                                                       
+                                                       // release citizens
+                                                       for(Citizen *citizen in citizenToRelease)
+                                                       {
+                                                           [self.citizens removeObject:citizen];
+                                                           [self removeChild:citizen cleanup:YES];
+                                                       }
                                                    }];
                [citizen runAction:[CCSequence actions:citizenFadeOutAction, removeCitizenFromLayerAction, nil]];
                 
@@ -261,11 +269,11 @@
         [self removeChild:laserBolt cleanup:YES];
     }
     
-    for(Citizen *citizen in citizenToRelease)
-    {
-        [_citizens removeObject:citizen];
-        [self removeChild:citizen cleanup:YES];
-    }
+//    for(Citizen *citizen in citizenToRelease)
+//    {
+//        [self.citizens removeObject:citizen];
+//        [self removeChild:citizen cleanup:YES];
+//    }
     
     // garbage collection
     [laserBoltsToRelease release];

@@ -19,6 +19,7 @@
 @implementation GameplayScene
 @synthesize bgLayer = _bgLayer;
 @synthesize spriteLayer = _spriteLayer;
+@synthesize timeElapsed = _timeElapsed;
 
 +(GameplayScene*) scene
 {
@@ -50,7 +51,9 @@
 
 -(void) update:(ccTime) dt
 {
-    //do game loop stuff
+    // add to elapsed time
+    _timeElapsed += dt;
+    NSLog(@"Elapsed time: %f", _timeElapsed);
 }
 
 -(void) dealloc

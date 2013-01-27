@@ -20,6 +20,8 @@
 
 @implementation Battery
 @synthesize batteryDecay;
+@synthesize doFirstBatteryLifeWarning = _doFirstBatteryLifeWarning;
+@synthesize doSecondBatteryLifeWarning = _doSecondBatteryLifeWarning;
 
 -(id) init
 {
@@ -27,6 +29,8 @@
     {
         [self setBatteryLife:100.0];
         _batteryDecay = 0.1;
+        self.doFirstBatteryLifeWarning  = YES;
+        self.doSecondBatteryLifeWarning = YES;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         self.position  = ccp(winSize.width*11/12, winSize.height*15/17);
@@ -43,14 +47,17 @@
 {
     [self setBatteryLife:[self getBatteryLife] - _batteryDecay];
     
-//    if([self getBatteryLife] < 66.6)
-//    {
-//        [[SimpleAudioEngine sharedEngine] playEffect:@"zap1.mp3"];
-//
-//    }
-//    
+    if([self getBatteryLife] < 66.6 && [self doFirstBatteryLifeWarning])
+    {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"zap1.mp3"];
+        self.doFirstBatteryLifeWarning = NO;
+    }
     
-    
+    if ([self getBatteryLife] < 33.3 && [self doSecondBatteryLifeWarning]) 
+    {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"zapTwoTone2.mp3"];
+        self.doSecondBatteryLifeWarning = NO;
+    }
 }
 
 
@@ -84,6 +91,8 @@
 -(NSString*) getChargeLevelIconName:(CGFloat)chargeLevel
 {
     int iconIndex =  (BATTERY_STAGES - ceil(chargeLevel/BATTERY_STAGE_DELTA))+1;
+//    NSString *log = [NSString stringWithFormat:@"%f charge gives %d index", chargeLevel, iconIndex];
+//    NSLog(log);
     return [NSString stringWithFormat:@"battery%d.png", iconIndex];
 }
 

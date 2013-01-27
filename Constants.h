@@ -15,7 +15,7 @@
 
 //Battery Information
 #define MAX_BATTERY_LIFE 100.0
-#define BATTERY_STAGES 4
+#define BATTERY_STAGES 3
 #define BATTERY_STAGE_DELTA (MAX_BATTERY_LIFE / BATTERY_STAGES)
 
 //Laser Information

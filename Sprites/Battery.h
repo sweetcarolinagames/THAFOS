@@ -12,10 +12,14 @@
 @interface Battery : CCSprite 
 {
     @private
+    BOOL _doFirstBatteryLifeWarning;
+    BOOL _doSecondBatteryLifeWarning;
     CGFloat _batteryLife;
     CGFloat _batteryDecay;
 }
 
+@property (nonatomic, readwrite) BOOL doFirstBatteryLifeWarning;
+@property (nonatomic, readwrite) BOOL doSecondBatteryLifeWarning;
 @property (nonatomic, readonly) CGFloat batteryDecay;
 @property (getter = getBatteryLife, setter = setBatteryLife:) CGFloat batteryLife;
 

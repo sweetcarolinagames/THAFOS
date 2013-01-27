@@ -19,11 +19,22 @@ typedef enum
     CITIZEN_FEMALE = (1 << 0)
 } CitizenGender;
 
+typedef enum
+{
+    CITIZEN_RIGHT = 0, 
+    CITIZEN_LEFT = (1 << 0)
+}CitizenDirection;
+
 @interface Citizen : Enemy {
-
-
+    @private
+    CitizenGender _gender;
+    CitizenDirection _dir;
 }
 
--(id)initWithSpriteFrameName;
+@property (nonatomic, readwrite) CitizenDirection dir;
+@property (nonatomic, readwrite) CitizenGender gender;
+
++(Citizen*)initWithSpriteFrameName:(CitizenGender)g:(CitizenDirection)d;
+
 
 @end

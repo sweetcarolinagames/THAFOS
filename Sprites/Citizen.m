@@ -10,13 +10,19 @@
 
 
 @implementation Citizen
+@synthesize dir = _dir;
+@synthesize gender = _gender;
 
--(id)initWithSpriteFrameName
++(Citizen*)initWithSpriteFrameName:(CitizenGender)g:(CitizenDirection)d;
 {
-    
-    NSString *spriteFile = CITIZEN_MALE ? @"man_silh_ggj13.png" : @"woman_silh_ggj13.png" ;
-    return [[Citizen alloc] initWithSpriteFrameName:spriteFile];
+
+    NSString *spriteFile = (g == CITIZEN_MALE ? @"man_silh_ggj13.png" : @"woman_silh_ggj13.png");
+    Citizen* citizen = (Citizen*) [[Citizen alloc] initWithSpriteFrameName:spriteFile];
+    citizen.gender = g;
+    citizen.dir = d;
+    return citizen;
 }
+
 
 -(id)init
 {
@@ -28,18 +34,23 @@
                                         self.position.y, 
                                         spriteTex.contentSize.width, 
                                         spriteTex.contentSize.height)];
+    
         
+        self.position = ccp(500, 95);
         _velocity = ccp(-25,0);
         _runAction = [[RunAction alloc] initWithDurationAndPosition:1 position:_velocity];
         _hitAction = [[HitAction alloc] initWithDuration:3.0f];
     }
-    
+
     return self;
 }
 
 -(void)run
 {    
-    self.position = ccp(self.position.x + 3.0f, self.position.y);
+    int dirMod = (_dir == CITIZEN_RIGHT ? 1 : -1);
+    CCJumpBy *jumpAction = [[CCJumpBy alloc] initWithDuration:0.5 position:ccp(dirMod*20,0) height:30 jumps:1];
+    CCRepeatForever *jumpForeverAction = [[CCRepeatForever alloc] initWithAction:jumpAction];
+    [self runAction:jumpForeverAction];
 }
 
 -(void)hit:(CollisionObj)obj

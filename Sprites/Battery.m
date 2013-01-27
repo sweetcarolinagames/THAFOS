@@ -90,7 +90,7 @@
 
 -(NSString*) getChargeLevelIconName:(CGFloat)chargeLevel
 {
-    int iconIndex =  (BATTERY_STAGES - ceil(chargeLevel/BATTERY_STAGE_DELTA))+1;
+    int iconIndex =  (BATTERY_STAGES - ceil(chargeLevel/BATTERY_STAGE_DELTA));
 //    NSString *log = [NSString stringWithFormat:@"%f charge gives %d index", chargeLevel, iconIndex];
 //    NSLog(log);
     return [NSString stringWithFormat:@"battery%d.png", iconIndex];

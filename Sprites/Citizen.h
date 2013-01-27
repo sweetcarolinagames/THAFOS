@@ -29,10 +29,12 @@ typedef enum
     @private
     CitizenGender _gender;
     CitizenDirection _dir;
+    BOOL _goodHeart;
 }
 
 @property (nonatomic, readwrite) CitizenDirection dir;
 @property (nonatomic, readwrite) CitizenGender gender;
+@property (nonatomic, readwrite) BOOL goodHeart;
 
 +(Citizen*)initWithSpriteFrameName:(CitizenGender)g:(CitizenDirection)d;
 

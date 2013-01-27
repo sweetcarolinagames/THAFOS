@@ -12,15 +12,11 @@
 @implementation Citizen
 @synthesize dir = _dir;
 @synthesize gender = _gender;
+@synthesize goodHeart = _goodHeart;
 
 +(Citizen*)initWithSpriteFrameName:(CitizenGender)g:(CitizenDirection)d;
 {
-
-    NSString *spriteFile = (g == CITIZEN_MALE ? @"man_silh_ggj13.png" : @"woman_silh_ggj13.png");
-    Citizen* citizen = (Citizen*) [[Citizen alloc] initWithSpriteFrameName:spriteFile];
-    citizen.gender = g;
-    citizen.dir = d;
-    return citizen;
+    return [[Citizen alloc] init];
 }
 
 
@@ -28,18 +24,27 @@
 {
     if((self = [super init]))
     {
-        CCTexture2D* spriteTex = [self texture];
-        [self setTextureRect:CGRectMake(
-                                        self.position.x, 
-                                        self.position.y, 
-                                        spriteTex.contentSize.width, 
-                                        spriteTex.contentSize.height)];
-    
+        //random male or female to generate
+        _gender = rand()%2;
+        NSString *spriteFile = (_gender == CITIZEN_MALE ? @"man_silh_ggj13.png" : @"woman_silh_ggj13.png");
+
+        //we need to check if we're going to update the battery charge icon going up or down
+        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                spriteFrameByName:
+                                spriteFile];
+        [self setDisplayFrame:frame];
         
+        //pick a random direction to face
+        self.dir = rand()%2; 
+        
+        
+        NSLog(@"Sprite text rect for citizen: (%f, %f)", self.textureRect.size.width, self.textureRect.size.height);
+        NSLog(@"Bounding box for citizen: (%f, %f)", self.boundingBox.size.width, self.boundingBox.size.height);
         self.position = ccp(500, 95);
         _velocity = ccp(-25,0);
         _runAction = [[RunAction alloc] initWithDurationAndPosition:1 position:_velocity];
         _hitAction = [[HitAction alloc] initWithDuration:3.0f];
+        _goodHeart = NO;
     }
 
     return self;

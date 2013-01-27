@@ -12,7 +12,7 @@
 
 @interface LaserBolt : CCSprite<Collidable>
 
-+(CCSprite*) generate:(CGPoint) origin;
-+(CCSprite*) generate:(CGPoint) origin: (CGFloat)offsetVerticallyBy;
++(LaserBolt*) generate:(CGPoint) origin;
++(LaserBolt*) generate:(CGPoint) origin: (CGFloat)offsetVerticallyBy;
 
 @end
